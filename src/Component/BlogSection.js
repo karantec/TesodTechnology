@@ -8,47 +8,47 @@ import "swiper/css/pagination";
 const BlogSection = () => {
   const blogs = [
     {
-      image: "https://via.placeholder.com/300x200",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSukrae50x7vj1clgxI6XzkidYbuo6k3nsDLQ&s",
       title: "स्वस्थ जीवन के लिए टिप्स",
       description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
       link: "#",
     },
     {
-      image: "https://via.placeholder.com/300x200",
-      title: "प्रेरणादायक कहानियां",
-      description: "सफलता की कहानियों से प्रेरणा लें और अपने लक्ष्य प्राप्त करें।",
-      link: "#",
-    },
-    {
-      image: "https://via.placeholder.com/300x200",
-      title: "तकनीकी ब्लॉग",
-      description: "नई तकनीकों और विकास के बारे में हमारी जानकारी प्राप्त करें।",
-      link: "#",
-    },
-    {
-        image: "https://via.placeholder.com/300x200",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSukrae50x7vj1clgxI6XzkidYbuo6k3nsDLQ&s",
         title: "स्वस्थ जीवन के लिए टिप्स",
         description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
         link: "#",
       },
       {
-        image: "https://via.placeholder.com/300x200",
-        title: "प्रेरणादायक कहानियां",
-        description: "सफलता की कहानियों से प्रेरणा लें और अपने लक्ष्य प्राप्त करें।",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSukrae50x7vj1clgxI6XzkidYbuo6k3nsDLQ&s",
+        title: "स्वस्थ जीवन के लिए टिप्स",
+        description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
         link: "#",
       },
       {
-        image: "https://via.placeholder.com/300x200",
-        title: "तकनीकी ब्लॉग",
-        description: "नई तकनीकों और विकास के बारे में हमारी जानकारी प्राप्त करें।",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSukrae50x7vj1clgxI6XzkidYbuo6k3nsDLQ&s",
+        title: "स्वस्थ जीवन के लिए टिप्स",
+        description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
         link: "#",
       },
-    {
-      image: "https://via.placeholder.com/300x200",
-      title: "यात्रा की कहानियां",
-      description: "हमारी यात्रा की कहानियां पढ़ें और दुनिया को जानें।",
-      link: "#",
-    },
+      {
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSukrae50x7vj1clgxI6XzkidYbuo6k3nsDLQ&s",
+        title: "स्वस्थ जीवन के लिए टिप्स",
+        description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
+        link: "#",
+      },
+      {
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSukrae50x7vj1clgxI6XzkidYbuo6k3nsDLQ&s",
+        title: "स्वस्थ जीवन के लिए टिप्स",
+        description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
+        link: "#",
+      },
+      {
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSukrae50x7vj1clgxI6XzkidYbuo6k3nsDLQ&s",
+        title: "स्वस्थ जीवन के लिए टिप्स",
+        description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
+        link: "#",
+      },
   ];
 
   return (

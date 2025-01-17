@@ -7,57 +7,59 @@ import "swiper/css/pagination";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import HeroSection from "./HeroSection";
+import BreakingNews from "./BreakingSection";
 
 const PodcastSections = () => {
   const podcasts = [
     {
-      image: "https://via.placeholder.com/300x200",
+      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
       title: "टेक्नोलॉजी पर चर्चा",
       description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
       link: "#",
     },
     {
-      image: "https://via.placeholder.com/300x200",
-      title: "खेल और फिटनेस",
-      description: "खेल और फिटनेस के विषय पर विशेषज्ञों के विचार।",
+      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
+      title: "टेक्नोलॉजी पर चर्चा",
+      description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
       link: "#",
     },
     {
-      image: "https://via.placeholder.com/300x200",
-      title: "समाचार और अद्यतन",
-      description: "ताजा खबरों के साथ हमारे दैनिक पॉडकास्ट का आनंद लें।",
+      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
+      title: "टेक्नोलॉजी पर चर्चा",
+      description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
       link: "#",
     },
     {
-        image: "https://via.placeholder.com/300x200",
+      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
+      title: "टेक्नोलॉजी पर चर्चा",
+      description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      link: "#",
+    },
+      {
+        image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
         title: "टेक्नोलॉजी पर चर्चा",
         description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
         link: "#",
       },
       {
-        image: "https://via.placeholder.com/300x200",
-        title: "खेल और फिटनेस",
-        description: "खेल और फिटनेस के विषय पर विशेषज्ञों के विचार।",
+        image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
+        title: "टेक्नोलॉजी पर चर्चा",
+        description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
         link: "#",
       },
       {
-        image: "https://via.placeholder.com/300x200",
-        title: "समाचार और अद्यतन",
-        description: "ताजा खबरों के साथ हमारे दैनिक पॉडकास्ट का आनंद लें।",
+        image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
+        title: "टेक्नोलॉजी पर चर्चा",
+        description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
         link: "#",
       },
-    {
-      image: "https://via.placeholder.com/300x200",
-      title: "संगीत और मनोरंजन",
-      description: "मनोरंजन और संगीत के लिए हमारी नवीनतम पॉडकास्ट सुनें।",
-      link: "#",
-    },
   ];
 
   return ( 
     <>
     <Navbar/>
     <HeroSection/>
+    <BreakingNews/>
     <section className="py-16 bg-gray-100">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8">
