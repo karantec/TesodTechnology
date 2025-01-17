@@ -40,7 +40,7 @@ const PodcastSection = () => {
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{item.title}</h3>
                 <p className="text-gray-600 mb-4">{item.description}</p>
                 <a href={item.link} className="text-orange-500 hover:underline font-semibold">
-                  पॉडकास्ट सुनें
+                और पढ़ें 
                 </a>
               </div>
             </div>

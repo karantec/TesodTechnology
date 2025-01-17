@@ -32,7 +32,7 @@ const PodcastSection = () => {
     <section className="py-16 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-          हमारे पॉडकास्ट सुनें
+        भारत
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {podcasts.map((item, index) => (
@@ -64,7 +64,7 @@ const PodcastSection = () => {
                   href={item.link}
                   className="text-orange-500 hover:underline font-semibold"
                 >
-                  पॉडकास्ट सुनें
+                  और पढ़ें 
                 </a>
               </div>
             </div>
