@@ -29,17 +29,41 @@ const PodcastSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-16 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">हमारे पॉडकास्ट सुनें</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+          हमारे पॉडकास्ट सुनें
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {podcasts.map((item, index) => (
-            <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
-              <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+            <div
+              key={index}
+              className={`${
+                index === 0
+                  ? "md:col-span-2 md:row-span-2 bg-white shadow-sm rounded-lg overflow-hidden"
+                  : "bg-white shadow-sm rounded-lg overflow-hidden"
+              } hover:shadow-md transition-shadow duration-300`}
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                className={`${
+                  index === 0 ? "w-full h-96 object-cover" : "w-full h-48 object-cover"
+                }`}
+              />
               <div className="p-4">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{item.title}</h3>
+                <h3
+                  className={`${
+                    index === 0 ? "text-2xl" : "text-xl"
+                  } font-bold text-gray-800 mb-2`}
+                >
+                  {item.title}
+                </h3>
                 <p className="text-gray-600 mb-4">{item.description}</p>
-                <a href={item.link} className="text-orange-500 hover:underline font-semibold">
+                <a
+                  href={item.link}
+                  className="text-orange-500 hover:underline font-semibold"
+                >
                   पॉडकास्ट सुनें
                 </a>
               </div>
