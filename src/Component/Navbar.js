@@ -1,126 +1,128 @@
 import React, { useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
-import CartSidebar from "./CartSidebar";
-import OrderCheckout from "./OrderCheckout";
-
+import { FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [showCheckout, setShowCheckout] = useState(false);
-
-  // Handler for back to home
-  const handleBackToHome = () => {
-    setShowCheckout(false); // This will hide the OrderCheckout component
-    setIsCartOpen(false);   // Ensure cart is closed
-  };
-
-  
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-30 backdrop-blur-sm">
-        <div className="container mx-auto flex items-center justify-between h-24 px-4">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+        <div className="container mx-auto flex items-center justify-between h-16 px-4">
           {/* Logo */}
           <a href="/" className="flex items-center">
             <img
-              className="h-12 md:h-16"
+              className="h-10"
               src="https://i.ibb.co/6Yxs70d/2021-10-26-23h27-03.png"
               alt="Logo"
             />
-            <span className="ml-2 md:ml-4 uppercase font-black text-sm md:text-base text-white">
-              Ecom
-              <br />
-              Stop
+            <span className="ml-2 font-bold text-lg text-gray-800">
+              NationFirst9
             </span>
           </a>
 
-          {/* Navigation Menu - Hidden on Mobile */}
-          <nav className="hidden md:contents font-semibold text-base lg:text-lg">
-            <ul className="mx-auto flex items-center">
-              <li className="p-5 xl:p-8">
+          {/* Navigation Menu */}
+          <nav className="hidden md:block">
+            <ul className="flex space-x-6 font-medium text-gray-700">
+              <li>
                 <a
                   href="/"
-                  className="text-white hover:text-gray-300 transition-colors"
+                  className="hover:text-blue-600 transition-colors"
                 >
-                  <span>Home</span>
+                  भारत
                 </a>
               </li>
-              <li className="p-5 xl:p-8">
+              <li>
                 <a
-                  href="#about"
-                  className="text-white hover:text-gray-300 transition-colors"
+                  href="#foreign"
+                  className="hover:text-blue-600 transition-colors"
                 >
-                  <span>About Us</span>
+                  विदेश
                 </a>
               </li>
-              <li className="p-5 xl:p-8">
+              <li>
                 <a
-                  href="#projects"
-                  className="text-white hover:text-gray-300 transition-colors"
+                  href="#entertainment"
+                  className="hover:text-blue-600 transition-colors"
                 >
-                  <span>Services</span>
+                  मनोरंजन
                 </a>
               </li>
-              <li className="p-5 xl:p-8">
+              <li>
                 <a
-                  href="#services"
-                  className="text-white hover:text-gray-300 transition-colors"
+                  href="#sports"
+                  className="hover:text-blue-600 transition-colors"
                 >
-                  <span>Contact Us</span>
+                  खेल
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#science-tech"
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  विज्ञान-टेक्नॉलॉजी
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#social"
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  सोशल
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#videos"
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  वीडियो
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/podcast"
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  पॉडकास्ट
                 </a>
               </li>
             </ul>
           </nav>
 
-          {/* Login, Sign Up, and Cart */}
-          <div className="flex items-center space-x-2 md:space-x-4">
+          {/* Search and Login */}
+          <div className="flex items-center space-x-4">
+            {/* Search Icon */}
+            <button
+              className="text-gray-700 hover:text-blue-600 transition-colors"
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+            >
+              <FaSearch className="text-xl" />
+            </button>
+
+            {/* Login Button */}
             <a
               href="#login"
-              className="border border-white text-white rounded-full px-4 py-1 md:px-8 md:py-2 text-sm md:text-base font-bold hover:bg-white hover:text-gray-800 transition-colors"
+              className="border border-blue-600 text-blue-600 rounded-full px-4 py-1 font-semibold hover:bg-blue-600 hover:text-white transition-colors"
             >
               Login
             </a>
-            <a
-              href="#signup"
-              className="bg-white text-gray-800 rounded-full px-4 py-1 md:px-8 md:py-2 text-sm md:text-base font-bold hover:bg-gray-200 transition-colors"
-            >
-              Sign Up
-            </a>
-            {/* Cart Icon with Counter */}
-            <div className="relative">
-              <button
-                className="p-2 text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsCartOpen(true)}
-                
-              >
-                <FaShoppingCart className="text-2xl" />
-                <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  0
-                </span>
-              </button>
-            </div>
           </div>
         </div>
+
+        {/* Search Bar */}
+        {isSearchOpen && (
+          <div className="bg-gray-100 border-t border-b border-gray-300">
+            <div className="container mx-auto px-4 py-2">
+              <input
+                type="text"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Search news, articles, or topics..."
+              />
+            </div>
+          </div>
+        )}
       </header>
-
-      {/* Cart Sidebar */}
-      <CartSidebar 
-        isOpen={isCartOpen} 
-        onClose={() => setIsCartOpen(false)}
-        onCheckout={() => {
-          setIsCartOpen(false);  // Close cart
-          setShowCheckout(true); // Show checkout
-        }}
-      />
-
-      {/* Order Checkout */}
-      {showCheckout && (
-        <OrderCheckout 
-          isVisible={showCheckout}
-          onClose={() => setShowCheckout(false)}
-          onBackToHome={handleBackToHome}
-        />
-      )}
     </>
   );
 };
