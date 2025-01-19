@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { useState } from "react";
+import { FaBars, FaSearch, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+      <header className="fixed top-0 left-0 right-0 h-20 z-50 bg-white shadow-md">
         <div className="container mx-auto flex items-center justify-between h-16 px-4">
           {/* Logo */}
           <a href="/" className="flex items-center">
@@ -33,7 +34,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  href="#foreign"
+                  href="/Foreign"
                   className="hover:text-blue-600 transition-colors"
                 >
                   विदेश
@@ -41,7 +42,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  href="#entertainment"
+                  href="/मनोरंजन"
                   className="hover:text-blue-600 transition-colors"
                 >
                   मनोरंजन
@@ -49,34 +50,10 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  href="#sports"
+                  href="/खेल"
                   className="hover:text-blue-600 transition-colors"
                 >
                   खेल
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#science-tech"
-                  className="hover:text-blue-600 transition-colors"
-                >
-                  विज्ञान-टेक्नॉलॉजी
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#social"
-                  className="hover:text-blue-600 transition-colors"
-                >
-                  सोशल
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#videos"
-                  className="hover:text-blue-600 transition-colors"
-                >
-                  वीडियो
                 </a>
               </li>
               <li>
@@ -90,23 +67,23 @@ const Navbar = () => {
             </ul>
           </nav>
 
-          {/* Search and Login */}
+          {/* Search and Hamburger Menu */}
           <div className="flex items-center space-x-4">
             {/* Search Icon */}
             <button
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className="hidden md:block text-gray-700 hover:text-blue-600 transition-colors"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
             >
               <FaSearch className="text-xl" />
             </button>
 
-            {/* Login Button */}
-            <a
-              href="#login"
-              className="border border-blue-600 text-blue-600 rounded-full px-4 py-1 font-semibold hover:bg-blue-600 hover:text-white transition-colors"
+            {/* Hamburger Menu */}
+            <button
+              className="text-gray-700 text-xl"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              Login
-            </a>
+              {isMenuOpen ? <FaTimes /> : <FaBars />}
+            </button>
           </div>
         </div>
 
@@ -123,6 +100,47 @@ const Navbar = () => {
           </div>
         )}
       </header>
+
+      {/* Expanded Hamburger Dropdown */}
+      {isMenuOpen && (
+        <div className="absolute top-20 left-0 w-full bg-white text-black z-40 shadow-lg">
+          <div className="container mx-auto px-4 py-4">
+            <div className="grid grid-cols-3 gap-4">
+              <div>
+                <h3 className="font-bold text-lg mb-2">क्षेत्र</h3>
+                <ul>
+                  <li>अफ्रीका</li>
+                  <li>एशिया</li>
+                  <li>यूरोप</li>
+                  <li>लैटिन अमेरिका</li>
+                  <li>मध्य पूर्व</li>
+                  <li>उत्तर अमेरिका</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg mb-2">विषय</h3>
+                <ul>
+                  <li>जलवायु</li>
+                  <li>समानता</li>
+                  <li>स्वास्थ्य</li>
+                  <li>माइग्रेशन</li>
+                  <li>प्रौद्योगिकी</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg mb-2">श्रेणियाँ</h3>
+                <ul>
+                  <li>व्यवसाय</li>
+                  <li>पर्यावरण</li>
+                  <li>मानवाधिकार</li>
+                  <li>खेल</li>
+                  <li>संस्कृति</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

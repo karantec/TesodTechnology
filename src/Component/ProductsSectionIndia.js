@@ -1,6 +1,6 @@
 import React from "react";
 
-const PodcastSection = () => {
+const ProductIndia = () => {
   const podcasts = [
     {
       image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
@@ -40,9 +40,9 @@ const PodcastSection = () => {
               key={index}
               className={`${
                 index === 0
-                  ? "md:col-span-2 md:row-span-2 bg-white shadow-sm rounded-lg overflow-hidden"
+                  ? "md:col-span-2 md:row-span-2 bg-white  rounded-md overflow-hidden"
                   : "bg-white shadow-sm rounded-lg overflow-hidden"
-              } hover:shadow-md transition-shadow duration-300`}
+              }`}
             >
               <img
                 src={item.image}
@@ -75,4 +75,4 @@ const PodcastSection = () => {
   );
 };
 
-export default PodcastSection;
+export default ProductIndia;

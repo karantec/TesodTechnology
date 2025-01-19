@@ -1,6 +1,5 @@
 import React from "react";
 import HeroSection from "./HeroSection";
-import ProductsSection from "./ProductsSection";
 
 import Footer from "./Footer";
 import PodcastSection from "./PodcastSection";
@@ -9,24 +8,26 @@ import Navbar from "./Navbar";
 import VideoNews from "./VideoSection";
 import LatestShow from "./LatestNews";
 import BreakingNews from "./BreakingSection";
+import HeroSliderWithContent from "./HeroSectionWithSlider";
+import ProductForeign from "./ProductsSectionforeign";
+import ProductIndia from "./ProductsSectionIndia";
 
 const Home = () => {
   return (
     <div>
-      <Navbar/>
-      <HeroSection />
+      
+     
+      <HeroSliderWithContent/>
       <BreakingNews/>
-      <ProductsSection />
-    
-      <ProductsSection />
+      <ProductIndia />
+      <ProductForeign/>
+        
       <VideoNews/>
       <LatestShow/>
-    
-      <ProductsSection />
-      <ProductsSection />
+      
        <PodcastSection/>
        <BlogSection/>
-      <Footer />
+     
     </div>
   );
 };

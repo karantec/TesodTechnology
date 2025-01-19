@@ -9,7 +9,16 @@ const BreakingNews = () => {
       </div>
       {/* Marquee Section */}
       <div className="overflow-hidden whitespace-nowrap">
-        <div className="text-blue-400 text-sm font-medium animate-scroll">
+        <div className="text-white text-sm font-bold animate-scroll">
+          Pakistan: Ex-Prime Minister Imran Khan convicted of graft
+        </div>
+        <div className="text-white text-sm font-bold animate-scroll">
+          Pakistan: Ex-Prime Minister Imran Khan convicted of graft
+        </div>
+        <div className="text-white text-sm font-bold animate-scroll">
+          Pakistan: Ex-Prime Minister Imran Khan convicted of graft
+        </div>
+        <div className="text-white text-sm font-bold animate-scroll">
           Pakistan: Ex-Prime Minister Imran Khan convicted of graft
         </div>
       </div>
