@@ -25,6 +25,12 @@ const ProductForeign = () => {
       // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
       link: "/detail",
     },
+    {
+      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/70e3/live/d54466e0-d5c8-11ef-ae89-45e6722c9041.jpg.webp",
+      title: "पुतिन को चुनौती देने वाले एलेक्सी नवेलनी को ज़हर दिए जाने की कहानी - विवेचना",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      link: "/detail",
+    },
 
    
  
@@ -33,7 +39,7 @@ const ProductForeign = () => {
   return (
     <section className="py-6 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+        <h2 className="text-3xl font-bold text-center underline mb-8 text-gray-800">
         विदेश
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -69,8 +75,18 @@ const ProductForeign = () => {
                   और पढ़ें 
                 </a>
               </div>
+             
             </div>
           ))}
+           
+</div>
+<div className="text-right mt-6">
+  <a
+    href="/india-news"
+    className="text-blue-600 hover:underline font-semibold text-lg"
+  >
+    विदेश से जुड़ी ख़बरें पढ़ें
+  </a>
         </div>
       </div>
     </section>
