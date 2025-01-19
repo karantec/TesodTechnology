@@ -3,33 +3,36 @@ import React, { useState } from "react";
 const PodcastSection = () => {
   const podcasts = [
     {
-      image: "https://img.youtube.com/vi/1IhQXcv6b-M/0.jpg", // Thumbnail image of the video
-      title: "टेक्नोलॉजी पर चर्चा",
-      description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
-      videoUrl: "https://www.youtube.com/embed/1IhQXcv6b-M?si=nacwrfUqPoZIwonf",
-      link: "#",
+      image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg", // Thumbnail image of the video
+      title: "दिल्ली चुनाव में चिराग पासवान का चौंकाने वाला एलान LIVE",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      videoUrl: "https://www.youtube.com/embed/maF-veTzMIU?si=oBe12uQlYOkYnPSw",
+      link: "/detail",
+    },
+   
+    {
+      image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg", // Thumbnail image of the video
+      title: "दिल्ली चुनाव में चिराग पासवान का चौंकाने वाला एलान LIVE",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      videoUrl: "https://www.youtube.com/embed/maF-veTzMIU?si=oBe12uQlYOkYnPSw",
+      link: "/detail",
     },
     {
-      image: "https://img.youtube.com/vi/1IhQXcv6b-M/0.jpg", // Thumbnail image of the video
-      title: "टेक्नोलॉजी पर चर्चा",
-      description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
-      videoUrl: "https://www.youtube.com/embed/1IhQXcv6b-M?si=nacwrfUqPoZIwonf",
-      link: "#",
+      image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg", // Thumbnail image of the video
+      title: "दिल्ली चुनाव में चिराग पासवान का चौंकाने वाला एलान LIVE",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      videoUrl: "https://www.youtube.com/embed/maF-veTzMIU?si=oBe12uQlYOkYnPSw",
+      link: "/detail",
     },
     {
-      image: "https://img.youtube.com/vi/1IhQXcv6b-M/0.jpg", // Thumbnail image of the video
-      title: "टेक्नोलॉजी पर चर्चा",
-      description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
-      videoUrl: "https://www.youtube.com/embed/1IhQXcv6b-M?si=nacwrfUqPoZIwonf",
-      link: "#",
+      image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg", // Thumbnail image of the video
+      title: "दिल्ली चुनाव में चिराग पासवान का चौंकाने वाला एलान LIVE",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      videoUrl: "https://www.youtube.com/embed/maF-veTzMIU?si=oBe12uQlYOkYnPSw",
+      link: "/detail",
     },
-    {
-      image: "https://img.youtube.com/vi/1IhQXcv6b-M/0.jpg", // Thumbnail image of the video
-      title: "टेक्नोलॉजी पर चर्चा",
-      description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
-      videoUrl: "https://www.youtube.com/embed/1IhQXcv6b-M?si=nacwrfUqPoZIwonf",
-      link: "#",
-    },
+    
+    
    
     // Add more podcast items as needed
   ];

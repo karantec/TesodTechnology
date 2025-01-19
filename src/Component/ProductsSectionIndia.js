@@ -3,29 +3,37 @@ import React from "react";
 const ProductIndia = () => {
   const podcasts = [
     {
-      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
-      title: "टेक्नोलॉजी पर चर्चा",
-      description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
-      link: "#",
+      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/1aed/live/2d7ec1a0-d634-11ef-9fd6-0be88a764111.jpg.webp",
+      title: "अमेरिका में टिकटॉक प्रतिबंध से पहले हुआ बंद, क्या भारत में पाबंदी के पीछे भी यही वजह थी",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      link: "/detail",
     },
     {
-      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
-      title: "विज्ञान और नवाचार",
-      description: "विज्ञान की नई खोजों और नवाचारों पर विशेष चर्चा।",
-      link: "#",
+      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/vivo/live/images/2025/1/19/838c1834-b063-4bd5-a586-8e248896fd35.jpg.webp",
+      title: "सैफ़ अली ख़ान पर हमला मामला: अभियुक्त को 5 दिन की पुलिस कस्टडी में भेजा गया",
+      // description: "विज्ञान की नई खोजों और नवाचारों पर विशेष चर्चा।",
+      link: "/detail",
     },
     {
-      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
-      title: "बिजनेस और स्टार्टअप",
-      description: "बिजनेस और स्टार्टअप की दुनिया के ताजे समाचार सुनें।",
-      link: "#",
+      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/1aed/live/2d7ec1a0-d634-11ef-9fd6-0be88a764111.jpg.webp",
+      title: "अमेरिका में टिकटॉक प्रतिबंध से पहले हुआ बंद, क्या भारत में पाबंदी के पीछे भी यही वजह थी",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      link: "/detail",
     },
     {
-      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
-      title: "स्वास्थ्य और जीवनशैली",
-      description: "स्वास्थ्य और जीवनशैली पर विशेषज्ञों से सुनिए।",
-      link: "#",
+      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/vivo/live/images/2025/1/19/838c1834-b063-4bd5-a586-8e248896fd35.jpg.webp",
+      title: "सैफ़ अली ख़ान पर हमला मामला: अभियुक्त को 5 दिन की पुलिस कस्टडी में भेजा गया",
+      // description: "विज्ञान की नई खोजों और नवाचारों पर विशेष चर्चा।",
+      link: "/detail",
     },
+    {
+      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/1aed/live/2d7ec1a0-d634-11ef-9fd6-0be88a764111.jpg.webp",
+      title: "अमेरिका में टिकटॉक प्रतिबंध से पहले हुआ बंद, क्या भारत में पाबंदी के पीछे भी यही वजह थी",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      link: "/detail",
+    },
+    
+  
   ];
 
   return (

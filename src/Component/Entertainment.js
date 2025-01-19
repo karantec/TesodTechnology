@@ -82,7 +82,8 @@ const Entertainment= () => {
     <section className="py-16 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100">
       <div className="container mx-auto mt-32 px-4">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-          विदेश
+        मनोरंजन
+
         </h2>
         
         {/* Grid Layout for Cards */}

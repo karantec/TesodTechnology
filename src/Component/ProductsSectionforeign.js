@@ -3,29 +3,31 @@ import React from "react";
 const ProductForeign = () => {
   const podcasts = [
     {
-      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
-      title: "टेक्नोलॉजी पर चर्चा",
-      description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
-      link: "#",
+      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/70e3/live/d54466e0-d5c8-11ef-ae89-45e6722c9041.jpg.webp",
+      title: "पुतिन को चुनौती देने वाले एलेक्सी नवेलनी को ज़हर दिए जाने की कहानी - विवेचना",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      link: "/detail",
     },
     {
-      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
-      title: "विज्ञान और नवाचार",
-      description: "विज्ञान की नई खोजों और नवाचारों पर विशेष चर्चा।",
-      link: "#",
+      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/5d8f/live/6675cd30-d352-11ef-8ee5-5100e9033936.jpg.webp",
+      title: "बुद्ध की जन्मस्थली लुंबिनी यूनेस्को की संकटग्रस्त धरोहरों की सूची में क्यों जा सकती है",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      link: "/detail",
     },
     {
-      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
-      title: "बिजनेस और स्टार्टअप",
-      description: "बिजनेस और स्टार्टअप की दुनिया के ताजे समाचार सुनें।",
-      link: "#",
+      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/70e3/live/d54466e0-d5c8-11ef-ae89-45e6722c9041.jpg.webp",
+      title: "पुतिन को चुनौती देने वाले एलेक्सी नवेलनी को ज़हर दिए जाने की कहानी - विवेचना",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      link: "/detail",
+    }, {
+      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/70e3/live/d54466e0-d5c8-11ef-ae89-45e6722c9041.jpg.webp",
+      title: "पुतिन को चुनौती देने वाले एलेक्सी नवेलनी को ज़हर दिए जाने की कहानी - विवेचना",
+      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
+      link: "/detail",
     },
-    {
-      image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",
-      title: "स्वास्थ्य और जीवनशैली",
-      description: "स्वास्थ्य और जीवनशैली पर विशेषज्ञों से सुनिए।",
-      link: "#",
-    },
+
+   
+ 
   ];
 
   return (
