@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 h-20 z-50 bg-white shadow-md">
-        <div className="container mx-auto flex items-center justify-between h-16 px-4">
+        <div className="container mb-20 mx-auto flex items-center justify-between h-16 px-4">
           {/* Logo */}
           <a href="/" className="flex items-center">
             <img
@@ -16,14 +16,14 @@ const Navbar = () => {
               src="https://i.ibb.co/6Yxs70d/2021-10-26-23h27-03.png"
               alt="Logo"
             />
-            <span className="ml-2 font-bold text-lg text-gray-800">
+            <span className="ml-2 font-bold text-2xl text-gray-800">
               NationFirst9
             </span>
           </a>
 
           {/* Navigation Menu */}
           <nav className="hidden md:block">
-            <ul className="flex space-x-6 font-medium text-gray-700">
+            <ul className="flex space-x-6 font-bold text-xl text-gray-700">
               <li>
                 <a
                   href="/"
@@ -107,34 +107,34 @@ const Navbar = () => {
           <div className="container mx-auto px-4 py-4">
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <h3 className="font-bold text-lg mb-2">क्षेत्र</h3>
+                <h3 className="font-bold text-2xl mb-2">क्षेत्र</h3>
                 <ul>
-                  <li>अफ्रीका</li>
-                  <li>एशिया</li>
-                  <li>यूरोप</li>
-                  <li>लैटिन अमेरिका</li>
-                  <li>मध्य पूर्व</li>
-                  <li>उत्तर अमेरिका</li>
+                  <li className="font-bold text-xl">अफ्रीका</li>
+                  <li className="font-bold text-xl">एशिया</li>
+                  <li className="font-bold text-xl">यूरोप</li>
+                  <li className="font-bold text-xl">लैटिन अमेरिका</li>
+                  <li className="font-bold text-xl">मध्य पूर्व</li>
+                  <li className="font-bold text-xl">उत्तर अमेरिका</li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-2">विषय</h3>
+                <h3 className="font-bold text-2xl mb-2">विषय</h3>
                 <ul>
-                  <li>जलवायु</li>
-                  <li>समानता</li>
-                  <li>स्वास्थ्य</li>
-                  <li>माइग्रेशन</li>
-                  <li>प्रौद्योगिकी</li>
+                  <li className="font-bold text-xl">जलवायु</li>
+                  <li className="font-bold text-xl">समानता</li>
+                  <li className="font-bold text-xl">स्वास्थ्य</li>
+                  <li className="font-bold text-xl">माइग्रेशन</li>
+                  <li className="font-bold text-xl">प्रौद्योगिकी</li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-bold text-lg mb-2">श्रेणियाँ</h3>
+                <h3 className="font-bold text-2xl mb-2">श्रेणियाँ</h3>
                 <ul>
-                  <li>व्यवसाय</li>
-                  <li>पर्यावरण</li>
-                  <li>मानवाधिकार</li>
-                  <li>खेल</li>
-                  <li>संस्कृति</li>
+                  <li className="font-bold text-xl">व्यवसाय</li>
+                  <li className="font-bold text-xl">पर्यावरण</li>
+                  <li className="font-bold text-xl">मानवाधिकार</li>
+                  <li className="font-bold text-xl">खेल</li>
+                  <li className="font-bold text-xl">संस्कृति</li>
                 </ul>
               </div>
             </div>
