@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 h-20 bg-white shadow-md z-40">
-        <div className="container mx-auto flex items-center justify-between h-20 px-4">
+        <div className="container mx-auto flex items-center justify-between h-20 px-4 md:px-8 overflow-hidden w-full">
           {/* Logo */}
           <a href="/" className="flex items-center">
             <img
@@ -89,46 +89,6 @@ const Navbar = () => {
                 <a href="/खेल" className="block text-lg font-medium text-gray-900 hover:text-blue-600">खेल</a>
                 <a href="/podcast" className="block text-lg font-medium text-gray-900 hover:text-blue-600">पॉडकास्ट</a>
               </nav>
-
-              {/* Categories Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* Region Section */}
-                <div>
-                  <h3 className="font-bold text-lg mb-3">क्षेत्र</h3>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button className="text-left text-gray-700 hover:text-blue-600">अफ्रीका</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">एशिया</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">यूरोप</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">लैटिन अमेरिका</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">मध्य पूर्व</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">उत्तर अमेरिका</button>
-                  </div>
-                </div>
-
-                {/* Topics Section */}
-                <div>
-                  <h3 className="font-bold text-lg mb-3">विषय</h3>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button className="text-left text-gray-700 hover:text-blue-600">जलवायु</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">समानता</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">स्वास्थ्य</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">माइग्रेशन</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">प्रौद्योगिकी</button>
-                  </div>
-                </div>
-
-                {/* Categories Section */}
-                <div>
-                  <h3 className="font-bold text-lg mb-3">श्रेणियाँ</h3>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button className="text-left text-gray-700 hover:text-blue-600">व्यवसाय</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">पर्यावरण</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">मानवाधिकार</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">खेल</button>
-                    <button className="text-left text-gray-700 hover:text-blue-600">संस्कृति</button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </>
