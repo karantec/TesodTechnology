@@ -15,12 +15,12 @@ const Navbar = () => {
         <div className="container mx-auto flex items-center justify-between h-20 px-4 md:px-8 overflow-hidden w-full">
           {/* Logo */}
           <a href="/" className="flex items-center">
-            <img
+            {/* <img
               className="h-10"
               src="/api/placeholder/40/40"
               alt="Logo"
-            />
-            <span className="ml-2 font-bold text-lg text-gray-800">
+            /> */}
+            <span className="ml-2 font-bold text-lg uppercase text-red-800">
               NationFirst9
             </span>
           </a>
