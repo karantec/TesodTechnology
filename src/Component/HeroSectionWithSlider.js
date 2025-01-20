@@ -39,7 +39,7 @@ const HeroSliderWithContent = () => {
   }, [currentSlide]);
 
   return (
-    <section className="relative w-full h-[600px] overflow-hidden bg-gray-200 mt-20 lg:mt-0">
+    <section className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-gray-200 mt-20 lg:mt-0">
       <div
         ref={sliderRef}
         className="flex w-full h-full transition-all duration-700 overflow-x-hidden"
@@ -54,11 +54,13 @@ const HeroSliderWithContent = () => {
               backgroundPosition: "center",
             }}
           >
-            <div className="  text-white p-4 sm:p-6 lg:p-8 rounded-md w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2">
-              <h2 className="text-xl  mt-96 sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+            <div className="text-white p-4 sm:p-6 lg:p-8  rounded-md w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2">
+              <h2 className="text-lg mt-96 sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center">
                 {slide.title}
               </h2>
-             
+              <p className="text-sm sm:text-base md:text-lg text-center">
+                {slide.description}
+              </p>
             </div>
           </div>
         ))}
