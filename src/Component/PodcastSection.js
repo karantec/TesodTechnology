@@ -98,8 +98,8 @@ const PodcastSection = () => {
 
         {/* Text Section */}
         <div className="lg:w-1/4 w-full lg:ml-6 mt-8 lg:mt-0 text-center lg:text-left">
-          <h3 className="text-2xl font-bold text-gray-800">और पॉडकास्ट पढ़ा</h3>
-          <p className="text-gray-600 mt-4">
+          <h3 className="text-2xl font-bold mt-20 text-gray-800">और पॉडकास्ट पढ़ा</h3>
+          <p className="text-gray-600">
             हमारे अन्य पॉडकास्ट पर भी नजर डालें। आप विभिन्न विषयों पर रोचक और उपयोगी
             सामग्री पा सकते हैं।
           </p>
