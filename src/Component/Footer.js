@@ -2,19 +2,19 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-white py-16 px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+    <footer className="bg-white py-10 px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {/* Contact Information */}
         <div>
           <h2 className="text-orange-500 font-medium">Contact Us</h2>
-          <p className="mt-4 text-gray-900 text-2xl font-medium sm:text-3xl">
+          <p className="mt-4 text-gray-900 text-xl font-medium sm:text-2xl">
             news@nationfirst.com
           </p>
           <ul className="mt-4 text-sm text-gray-700 space-y-1">
             <li>Monday to Friday: 9am - 6pm</li>
             <li>Weekend: Closed</li>
           </ul>
-          <ul className="mt-6 flex gap-6">
+          <ul className="mt-6 flex gap-4">
             {[
               { label: "Facebook", iconPath: "M22 ...", link: "#" },
               { label: "Instagram", iconPath: "M12.315 ...", link: "#" },
@@ -100,9 +100,10 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="mt-12 border-t border-gray-100 pt-8">
+      {/* Footer Bottom Section */}
+      <div className="mt-12 border-t border-gray-200 pt-6">
         <p className="text-xs text-gray-500 text-center">
-          &copy; 2024. NationFirst News. All rights reserved.
+          &copy; 2024 NationFirst News. All rights reserved.
         </p>
       </div>
     </footer>
