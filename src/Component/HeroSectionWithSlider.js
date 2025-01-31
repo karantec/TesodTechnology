@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import BreakingNews from "./BreakingSection";
 
 const HeroSliderWithContent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -39,6 +40,10 @@ const HeroSliderWithContent = () => {
   }, [currentSlide]);
 
   return (
+
+    <>
+  
+    
     <section className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-gray-200 mt-20 lg:mt-0">
       <div
         ref={sliderRef}
@@ -79,6 +84,7 @@ const HeroSliderWithContent = () => {
         ))}
       </div>
     </section>
+    </>
   );
 };
 

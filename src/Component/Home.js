@@ -14,21 +14,18 @@ import ProductIndia from "./ProductsSectionIndia";
 
 const Home = () => {
   return (
-    <div>
-      
-     
-      <HeroSliderWithContent/>
-      <BreakingNews/>
-      <ProductIndia />
-      <ProductForeign/>
-        
-      <VideoNews/>
-      <LatestShow/>
-      
-       <PodcastSection/>
-       <BlogSection/>
-     
-    </div>
+    <div className="relative">
+       
+  {/* Now it's inside Home, below the navbar */}
+    <HeroSliderWithContent />
+    <BreakingNews />
+    <ProductIndia />
+    <ProductForeign />
+    <VideoNews />
+    <LatestShow />
+    <PodcastSection />
+    <BlogSection />
+  </div>
   );
 };
 

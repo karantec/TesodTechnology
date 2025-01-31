@@ -11,12 +11,14 @@ import Footer from "./Component/Footer";
 import ProductForen from "./Component/NewsForeign";
 import Entertainment from "./Component/Entertainment";
 import Games from "./Component/Games";
+import BreakingNews from "./Component/BreakingSection";
 
 const App = () => {
 
   return (
-    <div>
+    <>
       <Navbar />
+   
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/podcast" element={<PodcastSections />} />
@@ -26,7 +28,7 @@ const App = () => {
         <Route path="/खेल" element={<Games />} />
       </Routes>
       <Footer/>
-    </div>
+    </>
   );
 };
 
