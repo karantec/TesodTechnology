@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import BreakingNews from "./BreakingSection";
 
 const HeroSliderWithContent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -40,11 +39,8 @@ const HeroSliderWithContent = () => {
   }, [currentSlide]);
 
   return (
-
     <>
-  
-    
-    <section className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden bg-gray-200 mt-20 lg:mt-0">
+    <section className="relative mt-60  w-full h-[400px] sm:h-[500px] lg:h-[600px] bg-gray-200  lg:mt-0">
       <div
         ref={sliderRef}
         className="flex w-full h-full transition-all duration-700 overflow-x-hidden"

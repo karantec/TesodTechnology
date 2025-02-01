@@ -36,6 +36,8 @@ const Navbar = () => {
               <li><a href="/जायका" className="hover:text-blue-600 transition-colors">जायका</a></li>
               <li><a href="/स्वास्थ्य" className="hover:text-blue-600 transition-colors">स्वास्थ्य</a></li>
               <li><a href="/व्यापार" className="hover:text-blue-600 transition-colors">व्यापार</a></li>
+              <li><a href="/podcast" className="hover:text-blue-600 transition-colors">Podcast</a></li>
+              <li><a href="/blog" className="hover:text-blue-600 transition-colors">Blogs</a></li>
             </ul>
           </nav>
 
@@ -76,8 +78,10 @@ const Navbar = () => {
                   <a href="/खेल" className="block text-lg font-medium text-gray-900 hover:text-blue-600">खेल</a>
                   <a href="/मौसम" className="block text-lg font-medium text-gray-900 hover:text-blue-600">मौसम</a>
                   <a href="/जायका" className="block text-lg font-medium text-gray-900 hover:text-blue-600">जायका</a>
-                  <a href="/स्वास्थ्य" className="block text-lg font-medium text-gray-900 hover:text-blue-600">स्वास्थ्य</a>
+                  <a href="/स्वास्थ्य" className="block text-lg font-medium text-gray-900 hover:text-blue-600">स्वास्थ्य</a>                 
                   <a href="/व्यापार" className="block text-lg font-medium text-gray-900 hover:text-blue-600">व्यापार</a>
+                  <a href="/podcast" className="hover:text-blue-600 transition-colors">Podcast</a>
+                 <a href="/blog" className="hover:text-blue-600 transition-colors">Blogs</a>
                 </nav>
               </div>
             </div>
