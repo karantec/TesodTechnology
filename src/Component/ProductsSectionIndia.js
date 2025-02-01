@@ -32,7 +32,7 @@ const ProductIndia = () => {
   return (
     <section className="py-6 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 underline">भारत</h2>
+        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 underline">राष्ट्रीय</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {podcasts.map((item, index) => (
             <div
