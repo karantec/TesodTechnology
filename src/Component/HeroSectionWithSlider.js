@@ -40,7 +40,7 @@ const HeroSliderWithContent = () => {
 
   return (
     <>
-    <section className="relative mt-60  w-full h-[400px] sm:h-[500px] lg:h-[600px] bg-gray-200  lg:mt-0">
+    <section className="relative mt-96  w-full h-96 sm:h-[500px] lg:h-[600px] bg-gray-200  lg:mt-10">
       <div
         ref={sliderRef}
         className="flex w-full h-full transition-all duration-700 overflow-x-hidden"

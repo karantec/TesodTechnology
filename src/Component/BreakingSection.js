@@ -1,25 +1,25 @@
 const BreakingNews = () => {
   return (
-    <div className="bg-red-600  fixed flex items-center w-full  z-50 py-2 mt-20"> {/* Add margin-top to avoid overlap */}
+    <div className="bg-red-600   flex items-center w-full  h-20 z-50 py-2 mt-20"> {/* Add margin-top to avoid overlap */}
       {/* Breaking Label */}
       <div className="bg-red-500 text-white font-bold px-2 py-1">
         BREAKING
       </div>
       {/* Marquee Section */}
       <div className="flex overflow-hidden whitespace-nowrap w-full">
-        <div className="text-white text-sm font-bold animate-scroll">
+        <div className="text-white text-2xl font-bold animate-scroll">
           Pakistan: Ex-Prime Minister Imran Khan convicted of graft
         </div>
-        <div className="text-white text-sm font-bold animate-scroll">
+        <div className="text-white text-2xl font-bold animate-scroll">
           Pakistan: Ex-Prime Minister Imran Khan convicted of graft
         </div>
-        <div className="text-white text-sm font-bold animate-scroll">
+        <div className="text-white text-2xl font-bold animate-scroll">
           Pakistan: Ex-Prime Minister Imran Khan convicted of graft
         </div>
-        <div className="text-white text-sm font-bold animate-scroll">
+        <div className="text-white text-2xl font-bold animate-scroll">
           Pakistan: Ex-Prime Minister Imran Khan convicted of graft
         </div>
-        <div className="text-white text-sm font-bold animate-scroll">
+        <div className="text-white text-2xl font-bold animate-scroll">
           Pakistan: Ex-Prime Minister Imran Khan convicted of graft
         </div>
       </div>
