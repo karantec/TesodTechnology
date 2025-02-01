@@ -55,11 +55,11 @@ const HeroSliderWithContent = () => {
               backgroundPosition: "center",
             }}
           >
-            <div className="text-white p-4 sm:p-6 lg:p-8  rounded-md w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2">
-              <h2 className="text-lg mt-96 sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center">
+            <div className="text-white mt-80 p-4 sm:p-6 lg:p-8  rounded-md w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2">
+              <h2 className="text-2xl  mt-96 text-black sm:text-xl md:text-2xl lg:text-4xl font-bold mb-2 text-center">
                 {slide.title}
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-center">
+              <p className="text-md  text-black sm:text-base md:text-lg text-center">
                 {slide.description}
               </p>
             </div>
