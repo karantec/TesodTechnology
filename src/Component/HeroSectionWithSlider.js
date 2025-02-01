@@ -48,7 +48,7 @@ const HeroSliderWithContent = () => {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-full h-full flex items-center justify-center"
+            className="flex-shrink-0 w-full opacity-90 h-full flex items-center justify-center"
             style={{
               backgroundImage: `url(${slide.image})`,
               backgroundSize: "cover",
@@ -56,7 +56,7 @@ const HeroSliderWithContent = () => {
             }}
           >
             <div className="text-white  mr-36 p-4 sm:p-6 lg:p-8  rounded-md w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2">
-              <h2 className="text-2xl  mt-96 text-black sm:text-xl md:text-2xl lg:text-4xl font-bold mb-2 text-center">
+              <h2 className="text-2xl  mt-96 text-white sm:text-xl md:text-2xl lg:text-4xl font-bold mb-2 text-center">
                 {slide.title}
               </h2>
               <p className="text-md  text-black sm:text-base md:text-lg text-center">
