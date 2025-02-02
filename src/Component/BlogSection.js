@@ -1,43 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useEffect } from "react";
+import axios from "axios";
 
 const BlogSection = () => {
-  const blogs = [
-    {
-      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/0b09/live/de578450-d542-11ef-9fd6-0be88a764111.jpg.webp",
-      title: "ईरान और रूस के बीच ऐसा कौन सा समझौता हुआ जो बढ़ा सकता है पश्चिमी देशों की परेशानी",
-      description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
-      link: "/detail",
-    },
-    {
-      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/0b09/live/de578450-d542-11ef-9fd6-0be88a764111.jpg.webp",
-      title: "ईरान और रूस के बीच ऐसा कौन सा समझौता हुआ जो बढ़ा सकता है पश्चिमी देशों की परेशानी",
-      description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
-      link: "/detail",
-    },
-    {
-      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/0b09/live/de578450-d542-11ef-9fd6-0be88a764111.jpg.webp",
-      title: "ईरान और रूस के बीच ऐसा कौन सा समझौता हुआ जो बढ़ा सकता है पश्चिमी देशों की परेशानी",
-      description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
-      link: "/detail",
-    },
-    {
-      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/0b09/live/de578450-d542-11ef-9fd6-0be88a764111.jpg.webp",
-      title: "ईरान और रूस के बीच ऐसा कौन सा समझौता हुआ जो बढ़ा सकता है पश्चिमी देशों की परेशानी",
-      description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
-      link: "/detail",
-    },
-    {
-      image: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/0b09/live/de578450-d542-11ef-9fd6-0be88a764111.jpg.webp",
-      title: "ईरान और रूस के बीच ऐसा कौन सा समझौता हुआ जो बढ़ा सकता है पश्चिमी देशों की परेशानी",
-      description: "जानें कि कैसे अपने जीवन को स्वस्थ और खुशहाल बना सकते हैं।",
-      link: "/detail",
-    },
-  ];
+  const [blog, setBlogs] = useState([]);
+  useEffect(() => {
+    async function fetchBlogs() {
+      try {
+        const data = await axios.get("http://localhost:3001/api/blog/blogs");
+        setBlogs(data.data.message)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchBlogs()
+  }, []);
+
+  
 
   return (
     <section className="py-8 bg-gray-100">
@@ -68,7 +52,7 @@ const BlogSection = () => {
                 },
               }}
             >
-              {blogs.map((item, index) => (
+              {blog.map((item, index) => (
                 <SwiperSlide key={index}>
                   <div className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
                     <img
@@ -98,7 +82,9 @@ const BlogSection = () => {
 
           {/* Text Section */}
           <div className="lg:w-1/4 w-full bg-white shadow-lg rounded-lg p-6 text-center lg:text-left">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">और ब्लॉग पढ़ें</h3>
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">
+              और ब्लॉग पढ़ें
+            </h3>
             <p className="text-gray-600 mb-4">
               नई और दिलचस्प सामग्री पढ़ने के लिए, हमारे अन्य ब्लॉग देखें। आप
               नवीनतम विषयों पर जानकारी प्राप्त कर सकते हैं।

@@ -1,7 +1,21 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import BlogSection from "./BlogSection";
+import axios from "axios";
 
 const Entertainment= () => {
+  const [podcast,setPodcast] = useState([])
+  useEffect(()=>{
+    async function fetchPodcasts() {
+      try {
+        const data =  await axios.get('http://localhost:3001/api/podcast/getallpodcast')
+        console.log(data.data.message)
+        setPodcast(data.data.message)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchPodcasts()
+  },[])
   const podcasts = [
     {
       image: "https://ichef.bbci.co.uk/news/1024/branded_hindi/E310/production/_110582185_aa5d0d33-b318-4afe-825c-b04290458c38.jpg",

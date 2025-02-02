@@ -1,7 +1,22 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import BlogSection from "./BlogSection";
+import axios from "axios";
 
 const PodcastSection = () => {
+  const [podcast,setPodcast] = useState([])
+  useEffect(()=>{
+    async function fetchPodcasts() {
+      try {
+        const data =  await axios.get('http://localhost:3001/api/podcast/getallpodcast')
+        console.log(data.data.message)
+        setPodcast(data.data.message)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchPodcasts()
+  },[])
+  
   const podcasts = [
     {
       image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg", // Thumbnail image of the video
@@ -50,7 +65,7 @@ const PodcastSection = () => {
       <div className="container mx-auto  mt-8 px-4">
         <h2 className="text-3xl font-bold text-center mb-8">हमारे पॉडकास्ट सुनें</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {podcasts.map((item, index) => (
+          {podcast.map((item, index) => (
             <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
               <div className="relative">
                 {/* Show Play Button or iframe */}
