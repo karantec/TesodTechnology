@@ -10,27 +10,13 @@ const CardsPage = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/news/News");
+        const response = await fetch(`http://localhost:3001/api/news/Newscategory/${category}`);
         if (!response.ok) {
           throw new Error("Failed to fetch news");
         }
 
         const data = await response.json();
-        console.log("API Response:", data); // Check the API response structure
-
-        // If the API returns a news array directly, use it
-        let newsArray = Array.isArray(data) ? data : data.news || [];
-
-        // If a category is specified, filter the news items by that category
-        if (category) {
-          newsArray = newsArray.filter(
-            (news) => news.category.toLowerCase() === category.toLowerCase()
-          );
-        }
-
-        console.log("Filtered News:", newsArray); // Check the filtered data
-
-        setCards(newsArray);
+        setCards(data.data)
       } catch (error) {
         console.error("Error fetching news:", error);
         setError("Failed to load news.");
@@ -64,6 +50,15 @@ const CardsPage = () => {
             <div className="p-4">
               <h2 className="text-xl font-semibold mb-2">{card.title}</h2>
               <p className="text-gray-600">{card.content}</p>
+              <p className="text-gray-400 text-sm mt-2">{new Date(card.publishedDate).toLocaleDateString()}</p>
+              <div className="mt-4">
+                <span className="text-sm text-blue-600">{card.category}</span>
+                <ul className="flex space-x-2 mt-2">
+                  {card.tags?.map((tag, index) => (
+                    <li key={index} className="text-xs text-gray-500">{tag}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         ))}

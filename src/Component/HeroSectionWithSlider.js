@@ -14,12 +14,7 @@ const HeroSliderWithContent = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-
-        console.log("API Response:", data); // Check the API response structure
-
-        // Check if data is an array or needs to be extracted from an object
-        const newsArray = Array.isArray(data) ? data : data.news || []; // Adjust based on API response structure
-        setSlides(newsArray); // Ensure slides is an array
+        setSlides(data.data); // Ensure slides is an array
       } catch (error) {
         console.error("Error fetching slider data:", error);
       }

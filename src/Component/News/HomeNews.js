@@ -12,16 +12,7 @@ const NewsSection = () => {
     async function fetchNews() {
       try {
         const response = await axios.get("http://localhost:3001/api/news/News");
-        console.log("API Response:", response.data); // Debugging log
-
-        let newsData = response.data; // Assume the response is an array
-
-        if (!Array.isArray(newsData)) {
-          // If the response is an object, extract the array
-          newsData = newsData.news || [];
-        }
-
-        setNews(newsData);
+        setNews(response.data.data);
       } catch (error) {
         console.error("Error fetching news:", error);
         setError("Failed to load news.");
