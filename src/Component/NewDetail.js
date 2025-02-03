@@ -1,7 +1,7 @@
 import React from "react";
 import BlogSection from "./BlogSection";
 import PodcastSection from "./PodcastSection";
-import ProductIndia from "./ProductsSectionIndia";
+
 import { Link } from "react-router-dom";
 
 const NewsDetail = () => {
@@ -89,8 +89,7 @@ const NewsDetail = () => {
           </div>
         </div>
       </div>
-      
-      <ProductIndia />
+
       <BlogSection />
     </>
   );

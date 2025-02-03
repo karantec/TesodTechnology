@@ -1,46 +1,61 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const HeroSliderWithContent = () => {
+  const [slides, setSlides] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const sliderRef = useRef();
+  const sliderRef = useRef(null);
 
-  const slides = [
-    {
-      image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg",
-      title: "दिल्ली चुनाव में चिराग पासवान का चौंकाने वाला एलान LIVE",
-      description: "Stay updated with the latest news and stories happening around the world.",
-    },
-    {
-      image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg",
-      title: "दिल्ली चुनाव में चिराग पासवान का चौंकाने वाला एलान LIVE",
-      description: "Stay updated with the latest news and stories happening around the world.",
-    },
-    {
-      image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg",
-      title: "दिल्ली चुनाव में चिराग पासवान का चौंकाने वाला एलान LIVE",
-      description: "Stay updated with the latest news and stories happening around the world.",
-    },
-  ];
-
+  // Fetch slider data from the API endpoint
   useEffect(() => {
+    const fetchSlides = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/news/News");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+
+        console.log("API Response:", data); // Check the API response structure
+
+        // Check if data is an array or needs to be extracted from an object
+        const newsArray = Array.isArray(data) ? data : data.news || []; // Adjust based on API response structure
+        setSlides(newsArray); // Ensure slides is an array
+      } catch (error) {
+        console.error("Error fetching slider data:", error);
+      }
+    };
+
+    fetchSlides();
+  }, []);
+
+  // Set up auto-slide interval only when there are slides available
+  useEffect(() => {
+    if (slides.length === 0) return;
+
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
     }, 4000);
-    return () => clearInterval(interval);
-  }, [slides.length]);
 
+    return () => clearInterval(interval);
+  }, [slides]);
+
+  // Scroll to the correct slide whenever currentSlide changes
   useEffect(() => {
-    if (sliderRef.current) {
+    if (sliderRef.current && slides.length > 0) {
       sliderRef.current.scrollTo({
         left: currentSlide * sliderRef.current.offsetWidth,
         behavior: "smooth",
       });
     }
-  }, [currentSlide]);
+  }, [currentSlide, slides]);
+
+  // Ensure that slides is an array before attempting to map over it
+  if (!Array.isArray(slides)) {
+    return <div>Error: The slides data is not an array</div>;
+  }
 
   return (
-    <>
-    <section className="relative mt-96  w-full h-96 sm:h-[500px] lg:h-[600px] bg-gray-200  lg:mt-10">
+    <section className="relative mt-96 w-full h-96 sm:h-[500px] lg:h-[600px] bg-gray-200 lg:mt-10">
       <div
         ref={sliderRef}
         className="flex w-full h-full transition-all duration-700 overflow-x-hidden"
@@ -50,17 +65,17 @@ const HeroSliderWithContent = () => {
             key={index}
             className="flex-shrink-0 w-full opacity-90 h-full flex items-center justify-center"
             style={{
-              backgroundImage: `url(${slide.image})`,
+              backgroundImage: `url(${slide.thumbnailUrl || slide.newImage?.[0]})`, // Use appropriate image field
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           >
-            <div className="text-white  mr-36 p-4 sm:p-6 lg:p-8  rounded-md w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2">
-              <h2 className="text-2xl  mt-96 text-white sm:text-xl md:text-2xl lg:text-4xl font-bold mb-2 text-center">
+            <div className="text-white mr-36 p-4 sm:p-6 lg:p-8 rounded-md w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2">
+              <h2 className="text-2xl mt-96 text-white sm:text-xl md:text-2xl lg:text-4xl font-bold mb-2 text-center">
                 {slide.title}
               </h2>
-              <p className="text-md  text-black sm:text-base md:text-lg text-center">
-                {slide.description}
+              <p className="text-md text-black sm:text-base md:text-lg text-center">
+                {slide.content || slide.description}
               </p>
             </div>
           </div>
@@ -80,7 +95,6 @@ const HeroSliderWithContent = () => {
         ))}
       </div>
     </section>
-    </>
   );
 };
 

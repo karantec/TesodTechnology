@@ -1,5 +1,7 @@
-import { useState } from "react";
+// Navbar.js
+import React, { useState } from "react";
 import { Menu, Search, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -14,30 +16,90 @@ const Navbar = () => {
       <header className="fixed top-0 left-0 right-0 h-20 bg-white shadow-md z-40">
         <div className="container mx-auto flex items-center justify-between h-20 px-4 md:px-8 overflow-hidden w-full">
           {/* Logo */}
-          <a href="/" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <span className="ml-2 font-bold text-lg uppercase text-red-800">
               NationFirst
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <ul className="flex space-x-6 font-medium text-gray-700">
-              <li><a href="/भारत" className="hover:text-blue-600 transition-colors">भारत</a></li>
-              <li><a href="/अंतरराष्ट्रीय" className="hover:text-blue-600 transition-colors">अंतरराष्ट्रीय</a></li>
-              <li><a href="/राष्ट्रीय" className="hover:text-blue-600 transition-colors">राष्ट्रीय</a></li>
-              <li><a href="/राज्य" className="hover:text-blue-600 transition-colors">राज्य</a></li>
-              <li><a href="/राजनीति" className="hover:text-blue-600 transition-colors">राजनीति</a></li>
-              <li><a href="/शिक्षा" className="hover:text-blue-600 transition-colors">शिक्षा</a></li>
-              <li><a href="/रोजगार" className="hover:text-blue-600 transition-colors">रोजगार</a></li>
-              <li><a href="/पर्यटन" className="hover:text-blue-600 transition-colors">पर्यटन</a></li>
-              <li><a href="/खेल" className="hover:text-blue-600 transition-colors">खेल</a></li>
-              <li><a href="/मौसम" className="hover:text-blue-600 transition-colors">मौसम</a></li>
-              <li><a href="/जायका" className="hover:text-blue-600 transition-colors">जायका</a></li>
-              <li><a href="/स्वास्थ्य" className="hover:text-blue-600 transition-colors">स्वास्थ्य</a></li>
-              <li><a href="/व्यापार" className="hover:text-blue-600 transition-colors">व्यापार</a></li>
-              <li><a href="/podcast" className="hover:text-blue-600 transition-colors">Podcast</a></li>
-              <li><a href="/blog" className="hover:text-blue-600 transition-colors">Blogs</a></li>
+              <li>
+                <Link to="/category/भारत" className="hover:text-blue-600 transition-colors">
+                  भारत
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/अंतरराष्ट्रीय" className="hover:text-blue-600 transition-colors">
+                  अंतरराष्ट्रीय
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/राष्ट्रीय" className="hover:text-blue-600 transition-colors">
+                  राष्ट्रीय
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/राज्य" className="hover:text-blue-600 transition-colors">
+                  राज्य
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/राजनीति" className="hover:text-blue-600 transition-colors">
+                  राजनीति
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/शिक्षा" className="hover:text-blue-600 transition-colors">
+                  शिक्षा
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/रोजगार" className="hover:text-blue-600 transition-colors">
+                  रोजगार
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/पर्यटन" className="hover:text-blue-600 transition-colors">
+                  पर्यटन
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/खेल" className="hover:text-blue-600 transition-colors">
+                  खेल
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/मौसम" className="hover:text-blue-600 transition-colors">
+                  मौसम
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/जायका" className="hover:text-blue-600 transition-colors">
+                  जायका
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/स्वास्थ्य" className="hover:text-blue-600 transition-colors">
+                  स्वास्थ्य
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/व्यापार" className="hover:text-blue-600 transition-colors">
+                  व्यापार
+                </Link>
+              </li>
+              <li>
+                <Link to="/podcast" className="hover:text-blue-600 transition-colors">
+                  Podcast
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="hover:text-blue-600 transition-colors">
+                  Blogs
+                </Link>
+              </li>
             </ul>
           </nav>
 
@@ -63,25 +125,118 @@ const Navbar = () => {
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
           <>
-            <div className="fixed inset-0 bg-black bg-opacity-50 z-30" onClick={handleOverlayClick} />
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-30"
+              onClick={handleOverlayClick}
+            />
             <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-white w-4/5 max-w-full overflow-auto z-30">
               <div className="container mx-auto px-4 py-6">
                 <nav className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3">
-                  <a href="/भारत" className="block text-lg font-medium text-gray-900 hover:text-blue-600">भारत</a>
-                  <a href="/अंतरराष्ट्रीय" className="block text-lg font-medium text-gray-900 hover:text-blue-600">अंतरराष्ट्रीय</a>
-                  <a href="/राष्ट्रीय" className="block text-lg font-medium text-gray-900 hover:text-blue-600">राष्ट्रीय</a>
-                  <a href="/राज्य" className="block text-lg font-medium text-gray-900 hover:text-blue-600">राज्य</a>
-                  <a href="/राजनीति" className="block text-lg font-medium text-gray-900 hover:text-blue-600">राजनीति</a>
-                  <a href="/शिक्षा" className="block text-lg font-medium text-gray-900 hover:text-blue-600">शिक्षा</a>
-                  <a href="/रोजगार" className="block text-lg font-medium text-gray-900 hover:text-blue-600">रोजगार</a>
-                  <a href="/पर्यटन" className="block text-lg font-medium text-gray-900 hover:text-blue-600">पर्यटन</a>
-                  <a href="/खेल" className="block text-lg font-medium text-gray-900 hover:text-blue-600">खेल</a>
-                  <a href="/मौसम" className="block text-lg font-medium text-gray-900 hover:text-blue-600">मौसम</a>
-                  <a href="/जायका" className="block text-lg font-medium text-gray-900 hover:text-blue-600">जायका</a>
-                  <a href="/स्वास्थ्य" className="block text-lg font-medium text-gray-900 hover:text-blue-600">स्वास्थ्य</a>                 
-                  <a href="/व्यापार" className="block text-lg font-medium text-gray-900 hover:text-blue-600">व्यापार</a>
-                  <a href="/podcast" className="hover:text-blue-600 transition-colors">Podcast</a>
-                 <a href="/blog" className="hover:text-blue-600 transition-colors">Blogs</a>
+                  <Link
+                    to="/category/भारत"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    भारत
+                  </Link>
+                  <Link
+                    to="/category/अंतरराष्ट्रीय"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    अंतरराष्ट्रीय
+                  </Link>
+                  <Link
+                    to="/category/राष्ट्रीय"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    राष्ट्रीय
+                  </Link>
+                  <Link
+                    to="/category/राज्य"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    राज्य
+                  </Link>
+                  <Link
+                    to="/category/राजनीति"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    राजनीति
+                  </Link>
+                  <Link
+                    to="/category/शिक्षा"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    शिक्षा
+                  </Link>
+                  <Link
+                    to="/category/रोजगार"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    रोजगार
+                  </Link>
+                  <Link
+                    to="/category/पर्यटन"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    पर्यटन
+                  </Link>
+                  <Link
+                    to="/category/खेल"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    खेल
+                  </Link>
+                  <Link
+                    to="/category/मौसम"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    मौसम
+                  </Link>
+                  <Link
+                    to="/category/जायका"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    जायका
+                  </Link>
+                  <Link
+                    to="/category/स्वास्थ्य"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    स्वास्थ्य
+                  </Link>
+                  <Link
+                    to="/category/व्यापार"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600"
+                  >
+                    व्यापार
+                  </Link>
+                  <Link
+                    to="/category/podcast"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Podcast
+                  </Link>
+                  <Link
+                    to="/category/blog"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    Blogs
+                  </Link>
                 </nav>
               </div>
             </div>

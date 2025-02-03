@@ -5,8 +5,10 @@ import VideoNews from "./VideoSection";
 import LatestShow from "./LatestNews";
 import BreakingNews from "./BreakingSection";
 import HeroSliderWithContent from "./HeroSectionWithSlider";
-import ProductForeign from "./ProductsSectionforeign";
-import ProductIndia from "./ProductsSectionIndia";
+import PodcastSection1 from "./PodcastSection";
+import NewsSection from "./News/HomeNews";
+
+
 
 const Home = () => {
   return (
@@ -14,12 +16,11 @@ const Home = () => {
       
   {/* Now it's inside Home, below the navbar */}
     <HeroSliderWithContent />
-    
-    <ProductIndia />
-    <ProductForeign />
+     
+    <NewsSection/>
     <VideoNews />
     <LatestShow />
-    <PodcastSection />
+    <PodcastSection1 />
     <BlogSection />
   </div>
   );

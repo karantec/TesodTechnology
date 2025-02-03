@@ -7,7 +7,7 @@ const PodcastSection = () => {
   useEffect(()=>{
     async function fetchPodcasts() {
       try {
-        const data =  await axios.get('http://localhost:3001/api/podcast/getallpodcast')
+        const data =  await axios.get('https://bbc-newsbackend.onrender.com/api/podcast/getallpodcast')
         console.log(data.data.message)
         setPodcast(data.data.message)
       } catch (error) {
@@ -17,41 +17,7 @@ const PodcastSection = () => {
     fetchPodcasts()
   },[])
   
-  const podcasts = [
-    {
-      image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg", // Thumbnail image of the video
-      title: "दिल्ली चुनाव में चिराग पासवान का चौंकाने वाला एलान LIVE",
-      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
-      videoUrl: "https://www.youtube.com/embed/maF-veTzMIU?si=oBe12uQlYOkYnPSw",
-      link: "#",
-    },
-   
-    {
-      image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg", // Thumbnail image of the video
-      title: "दिल्ली चुनाव में चिराग पासवान का चौंकाने वाला एलान LIVE",
-      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
-      videoUrl: "https://www.youtube.com/embed/maF-veTzMIU?si=oBe12uQlYOkYnPSw",
-      link: "#",
-    },
-    {
-      image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg", // Thumbnail image of the video
-      title: "दिल्ली चुनाव में चिराग पासवान का चौंकाने वाला एलान LIVE",
-      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
-      videoUrl: "https://www.youtube.com/embed/maF-veTzMIU?si=oBe12uQlYOkYnPSw",
-      link: "#",
-    },
-    {
-      image: "https://img.youtube.com/vi/maF-veTzMIU/hqdefault.jpg", // Thumbnail image of the video
-      title: "दिल्ली चुनाव में चिराग पासवान का चौंकाने वाला एलान LIVE",
-      // description: "तकनीक और भविष्य के बारे में हमारी नई पॉडकास्ट सुनें।",
-      videoUrl: "https://www.youtube.com/embed/maF-veTzMIU?si=oBe12uQlYOkYnPSw",
-      link: "#",
-    },
-    
-    
-   
-    // Add more podcast items as needed
-  ];
+  
 
   const [activeVideo, setActiveVideo] = useState(null);
 
@@ -109,9 +75,12 @@ const PodcastSection = () => {
               <div className="p-4">
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{item.title}</h3>
                 <p className="text-gray-600 mb-4">{item.description}</p>
-                <a href={item.link} className="text-orange-500 hover:underline font-semibold">
-                  और पढ़ें
-                </a>
+                <a
+                        href={`/podcast/${item._id}`}
+                        className="text-orange-500 hover:underline font-semibold mt-auto"
+                      >
+                        पूरा ब्लॉग पढ़ें
+                      </a>
               </div>
             </div>
           ))}
