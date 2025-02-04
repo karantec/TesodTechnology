@@ -6,7 +6,7 @@ const BreakingNews = () => {
     async function fetchBreakingNews() {
       try {
         const data = await axios.get(
-          "http://localhost:3001/api/breakingnews/getbreakingnews"
+          "https://bbc-newsbackend.onrender.com/api/breakingnews/getbreakingnews"
         );
         console.log(data.data.data)
         setBreakingNews(data.data.data);

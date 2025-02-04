@@ -9,7 +9,7 @@ const HeroSliderWithContent = () => {
   useEffect(() => {
     const fetchSlides = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/news/News");
+        const response = await fetch("https://bbc-newsbackend.onrender.com/api/news/News");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
