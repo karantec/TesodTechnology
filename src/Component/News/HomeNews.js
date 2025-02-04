@@ -11,7 +11,7 @@ const NewsSection = () => {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const response = await axios.get("http://localhost:3001/api/news/News");
+        const response = await axios.get("https://bbc-newsbackend.onrender.com/api/news/News");
         setNews(response.data.data);
       } catch (error) {
         console.error("Error fetching news:", error);
