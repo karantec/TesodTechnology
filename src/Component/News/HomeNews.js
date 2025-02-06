@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const NewsSection = () => {
+const  NewsSection = () => {
   const [news, setNews] = useState([]); // Ensure initial state is an array
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

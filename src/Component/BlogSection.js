@@ -12,8 +12,7 @@ const BlogSection = () => {
   useEffect(() => {
     async function fetchBlogs() {
       try {
-        const response = await axios.get("https://bbc-newsbackend.onrender.com/api/blog/blogs");
-        console.log(response.data); // Debugging to check the API response
+        const response = await axios.get("http://localhost:3001/api/blog/blogs");
         setBlogs(response.data.message);
       } catch (error) {
         console.log("Error fetching blogs:", error);
@@ -61,7 +60,7 @@ const BlogSection = () => {
                         {item.content?.replace(/<[^>]*>?/gm, "").substring(0, 100)}...
                       </p>
                       <a
-                        href={`/blog/${item._id}`}
+                        href={`/blogview/${item._id}`}
                         className="text-orange-500 hover:underline font-semibold mt-auto"
                       >
                         पूरा ब्लॉग पढ़ें

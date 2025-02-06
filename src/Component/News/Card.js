@@ -10,7 +10,7 @@ const CardsPage = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await fetch(`https://bbc-newsbackend.onrender.com/api/news/Newscategory/${category}`);
+        const response = await fetch(`http://localhost:3001/api/news/Newscategory/${category}`);
         if (!response.ok) {
           throw new Error("Failed to fetch news");
         }
@@ -42,11 +42,13 @@ const CardsPage = () => {
             key={card._id}
             className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
+            <a href={`/newsview/${card._id}`}>
             <img
               src={card.thumbnailUrl || card.newImage?.[0] || "https://via.placeholder.com/400x300?text=No+Image"}
               alt={card.title}
               className="w-full h-48 object-cover"
-            />
+              />
+              </a>
             <div className="p-4">
               <h2 className="text-xl font-semibold mb-2">{card.title}</h2>
               <p className="text-gray-600">{card.content}</p>

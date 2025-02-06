@@ -7,7 +7,7 @@ const PodcastSection = () => {
   useEffect(()=>{
     async function fetchPodcasts() {
       try {
-        const data =  await axios.get('https://bbc-newsbackend.onrender.com/api/podcast/getallpodcast')
+        const data =  await axios.get('http://localhost:3001/api/podcast/getallpodcast')
         console.log(data.data.message)
         setPodcast(data.data.message)
       } catch (error) {
@@ -76,7 +76,7 @@ const PodcastSection = () => {
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{item.title}</h3>
                 <p className="text-gray-600 mb-4">{item.description}</p>
                 <a
-                        href={`/podcast/${item._id}`}
+                        href={`/podcastview/${item._id}`}
                         className="text-orange-500 hover:underline font-semibold mt-auto"
                       >
                         पूरा ब्लॉग पढ़ें
