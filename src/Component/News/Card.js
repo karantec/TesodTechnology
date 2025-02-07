@@ -10,7 +10,7 @@ const CardsPage = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/news/Newscategory/${category}`);
+        const response = await fetch(`https://bbc-newsbackend-2yyf.onrender.com/api/news/Newscategory/${category}`);
         if (!response.ok) {
           throw new Error("Failed to fetch news");
         }

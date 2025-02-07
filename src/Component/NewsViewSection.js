@@ -10,7 +10,7 @@ const NewsSectionView = () => {
     async function fetchPodcasts() {
       try {
         const data = await axios.get(
-          `http://localhost:3001/api/news/News/${id}`
+          `https://bbc-newsbackend-2yyf.onrender.com/api/news/News/${id}`
         );
         if(data){
             setPodcast(data.data.data);
@@ -25,7 +25,7 @@ const NewsSectionView = () => {
       }
     }
     fetchPodcasts();
-  }, [podcast]);
+  }, [id]);
 
   return (
     <>

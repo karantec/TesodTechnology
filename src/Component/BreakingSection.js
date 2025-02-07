@@ -6,9 +6,8 @@ const BreakingNews = () => {
     async function fetchBreakingNews() {
       try {
         const data = await axios.get(
-          "https://bbc-newsbackend.onrender.com/api/breakingnews/getbreakingnews"
+          "https://bbc-newsbackend-2yyf.onrender.com/api/breakingnews/getbreakingnews"
         );
-        console.log(data.data.data)
         setBreakingNews(data.data.data);
       } catch (error) {
         setBreakingNews([]);

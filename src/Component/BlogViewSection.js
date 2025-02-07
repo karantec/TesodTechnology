@@ -9,7 +9,7 @@ function BlogViewSection() {
     async function fetchBlogs() {
       try {
         const data = await axios.get(
-          `http://localhost:3001/api/blog/blogs/${id}`
+          `https://bbc-newsbackend-2yyf.onrender.com/api/blog/blogs/${id}`
         );
         
         setBlog(data.data.message);
@@ -18,7 +18,7 @@ function BlogViewSection() {
       }
     }
     fetchBlogs();
-  }, []);
+  }, [id]);
   return (
     <div>
       <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
@@ -48,7 +48,7 @@ function BlogViewSection() {
             <img
               key={index}
               src={image}
-              alt={`Blog Image ${index + 1}`}
+              alt={`blog ${index + 1}`}
               className="w-full h-64 object-cover rounded-lg shadow-md"
             />
           ))}

@@ -12,7 +12,7 @@ const BlogSection = () => {
   useEffect(() => {
     async function fetchBlogs() {
       try {
-        const response = await axios.get("http://localhost:3001/api/blog/blogs");
+        const response = await axios.get("https://bbc-newsbackend-2yyf.onrender.com/api/blog/blogs");
         setBlogs(response.data.message);
       } catch (error) {
         console.log("Error fetching blogs:", error);

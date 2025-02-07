@@ -7,10 +7,8 @@ function PodcastSectionOne() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const response = await axios.get("http://localhost:3001/api/podcast/getallpodcast");
-        // console.log(response.data.message)
+        const response = await axios.get("https://bbc-newsbackend-2yyf.onrender.com/api/podcast/getallpodcast");
         setNews(response.data.message)
-        // setNews(response.data.message);
       } catch (error) {
         console.log(error);
       }
@@ -53,7 +51,7 @@ function PodcastSectionOne() {
               >
                 <img
                   className="object-cover w-full rounded h-44 dark:bg-gray-500"
-                  src={ele.thumbnailUrl}
+                  src={ele.thumbnail}
                   alt={ele.title}
                 />
                 <div className="p-6 space-y-2">
