@@ -3,11 +3,14 @@ import axios from "axios";
 
 function NewsSectionTwo() {
   const [news, setNews] = useState([]);
+  const [newNumber, setNewNumber] = useState(7);
 
   useEffect(() => {
     async function fetchNews() {
       try {
-        const response = await axios.get("https://bbc-newsbackend-2yyf.onrender.com/api/news/News");
+        const response = await axios.get(
+          "https://bbc-newsbackend-2yyf.onrender.com/api/news/News"
+        );
         setNews(response.data.data);
       } catch (error) {
         console.log(error);
@@ -45,7 +48,7 @@ function NewsSectionTwo() {
           )}
 
           <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {news.slice(1, news.length - 2).map((ele, index) => (
+            {news.slice(1, newNumber).map((ele, index) => (
               <a
                 key={ele._id}
                 rel="noopener noreferrer"
@@ -68,6 +71,23 @@ function NewsSectionTwo() {
                 </div>
               </a>
             ))}
+          </div>
+          <div className="flex flex-col items-center">
+            {newNumber === news.length ? (
+              <button
+                className="bg-blue-500 px-4 py-2 w-1/2 text-center text-white"
+                onClick={() => setNewNumber(7)}
+              >
+                Read less
+              </button>
+            ) : (
+              <button
+                className="bg-blue-500 px-4 py-2 w-1/2 text-center text-white"
+                onClick={() => setNewNumber(news.length - 5)}
+              >
+                Read More
+              </button>
+            )}
           </div>
         </div>
       </section>

@@ -3,6 +3,7 @@ import axios from "axios";
 
 function PodcastSectionOne() {
   const [news, setNews] = useState([]);
+   const [podcastNumber, setPodcastNumber] = useState(7);
 
   useEffect(() => {
     async function fetchNews() {
@@ -42,7 +43,7 @@ function PodcastSectionOne() {
           )}
 
           <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {news.slice(1, news.length - 2).map((ele, index) => (
+            {news.slice(1, podcastNumber).map((ele, index) => (
               <a
                 key={ele._id}
                 rel="noopener noreferrer"
@@ -63,6 +64,23 @@ function PodcastSectionOne() {
                 </div>
               </a>
             ))}
+          </div>
+          <div className="flex flex-col items-center">
+            {podcastNumber === news.length ? (
+              <button
+                className="bg-blue-500 px-4 py-2 w-1/2 text-center text-white"
+                onClick={() => setPodcastNumber(7)}
+              >
+                Read less
+              </button>
+            ) : (
+              <button
+                className="bg-blue-500 px-4 py-2 w-1/2 text-center text-white"
+                onClick={() => setPodcastNumber(news.length)}
+              >
+                Read More
+              </button>
+            )}
           </div>
         </div>
       </section>

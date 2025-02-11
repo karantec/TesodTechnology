@@ -4,6 +4,7 @@ import axios from "axios";
 
 const PodcastSection = () => {
   const [podcast, setPodcast] = useState([]);
+  const [podcastNumber, setPodcastNumber] = useState(7);
   useEffect(() => {
     async function fetchPodcasts() {
       try {
@@ -17,8 +18,6 @@ const PodcastSection = () => {
     }
     fetchPodcasts();
   }, []);
-
-  
 
   return (
     <>
@@ -54,6 +53,24 @@ const PodcastSection = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="flex flex-col items-center">
+            {podcastNumber === podcastNumber.length ? (
+              <button
+                className="bg-blue-500 px-4 py-2 w-1/2 text-center text-white"
+                onClick={() => setPodcastNumber(7)}
+              >
+                Read less
+              </button>
+            ) : (
+              <button
+                className="bg-blue-500 px-4 py-2 w-1/2 text-center text-white"
+                onClick={() => setPodcastNumber(podcast.length - 5)}
+              >
+                Read More
+              </button>
+            )}
           </div>
         </div>
       </section>
