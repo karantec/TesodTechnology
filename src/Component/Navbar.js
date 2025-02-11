@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Menu, Search, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png"
 
 const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -18,7 +19,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <span className="ml-2 font-bold text-lg uppercase text-red-800">
-              NationFirst
+              <img className="w-20 h-20" src={logo} alt="logo"/>
             </span>
           </Link>
 
@@ -113,7 +114,7 @@ const Navbar = () => {
             </button>
 
             <button
-              className="flex text-gray-700 hover:text-blue-600 transition-colors z-50"
+              className="lg:hidden text-gray-700 hover:text-blue-600 transition-colors z-50"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
