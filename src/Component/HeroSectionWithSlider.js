@@ -55,7 +55,7 @@ const HeroSliderWithContent = () => {
         ref={sliderRef}
         className="flex w-full h-full transition-all duration-700 overflow-x-hidden"
       >
-        {slides.map((slide, index) => (
+        {slides.slice(0,4).map((slide, index) => (
           <div
             key={index}
             className="flex-shrink-0 w-full opacity-90 h-full flex items-center justify-center"
@@ -79,7 +79,7 @@ const HeroSliderWithContent = () => {
 
       {/* Dots for Navigation */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {slides.map((_, index) => (
+        {slides.slice(0,4).map((_, index) => (
           <button
             key={index}
             className={`w-3 h-3 rounded-full ${

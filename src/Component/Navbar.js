@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 h-20 bg-slate-100 shadow-md z-50">
+      <header className="fixed top-0 left-0 right-0 h-20 bg-slate-500 shadow-md z-50 ">
         <div className="container mx-auto flex items-center justify-between h-20 px-4 md:px-8">
           {/* Logo */}
           <Link to="/" className="flex items-center">
@@ -19,14 +19,14 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
-            <ul className="flex space-x-6 font-medium text-gray-700">
+            <ul className="flex space-x-6 font-semibold text-white">
               {[
                 "अंतरराष्ट्रीय", "राष्ट्रीय", "राज्य", "राजनीति",
                 "शिक्षा", "रोजगार", "पर्यटन", "खेल", "मौसम",
                 "जायका", "स्वास्थ्य", "व्यापार"
               ].map((category) => (
                 <li key={category}>
-                  <Link to={`/category/${category}`} className="hover:text-blue-600 transition-colors">
+                  <Link to={`/category/${category}`} className="hover:text-slate-100 transition-colors">
                     {category}
                   </Link>
                 </li>
@@ -50,7 +50,7 @@ const Navbar = () => {
               className="hidden md:flex text-gray-700 hover:text-blue-600 transition-colors"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
             >
-              <Search className="h-6 w-6" />
+              <Search className="h-6 w-6 text-white" />
             </button>
 
             <button
@@ -58,7 +58,7 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? null : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? null : <Menu className="h-6 w-6 text-white" />}
             </button>
           </div>
         </div>
@@ -94,7 +94,7 @@ const Navbar = () => {
                   <Link
                     to={`/category/${category}`}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors hover:bg-slate-100 p-2"
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors hover:bg-slate-400 p-2"
                   >
                     {category}
                   </Link>
