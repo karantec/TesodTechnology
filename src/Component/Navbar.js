@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 h-20 bg-white shadow-md z-50">
+      <header className="fixed top-0 left-0 right-0 h-20 bg-slate-100 shadow-md z-50">
         <div className="container mx-auto flex items-center justify-between h-20 px-4 md:px-8">
           {/* Logo */}
           <Link to="/" className="flex items-center">
@@ -21,7 +21,7 @@ const Navbar = () => {
           <nav className="hidden md:block">
             <ul className="flex space-x-6 font-medium text-gray-700">
               {[
-                "भारत", "अंतरराष्ट्रीय", "राष्ट्रीय", "राज्य", "राजनीति",
+                "अंतरराष्ट्रीय", "राष्ट्रीय", "राज्य", "राजनीति",
                 "शिक्षा", "रोजगार", "पर्यटन", "खेल", "मौसम",
                 "जायका", "स्वास्थ्य", "व्यापार"
               ].map((category) => (
@@ -86,7 +86,7 @@ const Navbar = () => {
           <nav className="p-4">
             <ul className="space-y-4">
               {[
-                "भारत", "अंतरराष्ट्रीय", "राष्ट्रीय", "राज्य", "राजनीति",
+                "अंतरराष्ट्रीय", "राष्ट्रीय", "राज्य", "राजनीति",
                 "शिक्षा", "रोजगार", "पर्यटन", "खेल", "मौसम",
                 "जायका", "स्वास्थ्य", "व्यापार"
               ].map((category) => (
@@ -94,7 +94,7 @@ const Navbar = () => {
                   <Link
                     to={`/category/${category}`}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors"
+                    className="block text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors hover:bg-slate-100 p-2"
                   >
                     {category}
                   </Link>
