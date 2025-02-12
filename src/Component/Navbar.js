@@ -72,19 +72,19 @@ const Navbar = () => {
         />
 
         <div
-          className={`fixed top-0 left-0 h-full w-3/4 max-w-xs bg-white shadow-md transform transition-transform ${
+          className={`fixed top-0 left-0 h-full w-3/4 max-w-xs bg-slate-600 shadow-md transform transition-transform ${
             isMenuOpen ? "translate-x-0" : "-translate-x-full"
           } z-50`}
         >
           <div className="flex justify-between items-center p-4 border-b">
-            <span className="text-xl font-semibold">Menu</span>
+            <span className="text-xl font-semibold text-white">Menu</span>
             <button onClick={() => setIsMenuOpen(false)}>
-              <X className="h-6 w-6 text-gray-700 hover:text-red-600 transition-colors" />
+              <X className="h-6 w-6  hover:text-red-600 text-white transition-colors" />
             </button>
           </div>
 
           <nav className="p-4">
-            <ul className="space-y-4">
+            <ul className="space-y-4 ">
               {[
                 "अंतरराष्ट्रीय", "राष्ट्रीय", "राज्य", "राजनीति",
                 "शिक्षा", "रोजगार", "पर्यटन", "खेल", "मौसम",
@@ -94,19 +94,19 @@ const Navbar = () => {
                   <Link
                     to={`/category/${category}`}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors hover:bg-slate-400 p-2"
+                    className="block text-lg font-semibold text-white hover:text-blue-600 transition-colors hover:bg-slate-400 p-2"
                   >
                     {category}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link to="/podcast" className="block text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/podcast" className="block text-lg font-semibold text-white hover:text-blue-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
                   Podcast
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="block text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/blog" className="block text-lg font-semibold text-white hover:text-blue-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
                   Blogs
                 </Link>
               </li>
