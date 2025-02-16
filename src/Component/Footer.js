@@ -10,10 +10,6 @@ const Footer = () => {
           <p className="mt-4 text-gray-900 text-xl font-medium sm:text-2xl">
             news@nationfirst.com
           </p>
-          <ul className="mt-4 text-sm text-gray-700 space-y-1">
-            <li>Monday to Friday: 9am - 6pm</li>
-            <li>Weekend: Closed</li>
-          </ul>
           <ul className="mt-6 flex gap-4">
             {[
               { label: "Facebook", iconPath: "M22 ...", link: "#" },
