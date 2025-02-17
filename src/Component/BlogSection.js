@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import "swiper/css/autoplay";
 import axios from "axios";
 
 const BlogSection = () => {
@@ -35,9 +34,8 @@ const BlogSection = () => {
             <Swiper
               spaceBetween={20}
               slidesPerView={1}
-              navigation
-              pagination={{ clickable: true }}
-              modules={[Navigation, Pagination]}
+              autoplay={{ delay: 2000, disableOnInteraction: false }}
+              modules={[Autoplay]}
               breakpoints={{
                 640: { slidesPerView: 1 },
                 768: { slidesPerView: 2 },
@@ -52,12 +50,12 @@ const BlogSection = () => {
                       alt={item.title}
                       className="w-full h-48 object-cover"
                     />
-                    <div className="p-4 flex flex-col flex-grow">
-                      <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    <div className="p-2  flex-grow">
+                      <h3 className="text-xl font-bold text-blue-500 mb-2">
                         {item.title}
                       </h3>
                       <p className="text-gray-600 mb-4 flex-grow">
-                        {item.content?.replace(/<[^>]*>?/gm, "").substring(0, 100)}...
+                        {item.content?.replace(/<[^>]*>?/gm, "").substring(0, 100)}
                       </p>
                       <a
                         href={`/blogview/${item._id}`}

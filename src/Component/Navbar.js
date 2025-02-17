@@ -10,34 +10,55 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 h-20 bg-slate-500 shadow-md z-50 ">
+      <header className="fixed top-0 left-0 right-0 h-20 bg-blue-500 shadow-md z-50 ">
         <div className="container mx-auto flex items-center justify-between h-20 px-4 md:px-8">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img className="w-20 h-20" src={logo} alt="logo" />
+            <img className="w-32 h-32" src={logo} alt="logo" />
+            <span className="text-white font-bold -ml-6  text-lg md:hidden">
+              Nation First
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <ul className="flex space-x-6 font-semibold text-white">
               {[
-                "अंतरराष्ट्रीय", "राष्ट्रीय", "राज्य", "राजनीति",
-                "शिक्षा", "रोजगार", "स्वास्थ्य","खेल", "व्यापार","मौसम","जायका", "पर्यटन"
-
+                "अंतरराष्ट्रीय",
+                "राष्ट्रीय",
+                "राज्य",
+                "राजनीति",
+                "शिक्षा",
+                "रोजगार",
+                "स्वास्थ्य",
+                "खेल",
+                "व्यापार",
+                "मौसम",
+                "जायका",
+                "पर्यटन",
               ].map((category) => (
                 <li key={category}>
-                  <Link to={`/category/${category}`} className="hover:text-slate-100 transition-colors">
+                  <Link
+                    to={`/category/${category}`}
+                    className="hover:text-slate-100 transition-colors"
+                  >
                     {category}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link to="/podcast" className="hover:text-blue-600 transition-colors">
+                <Link
+                  to="/podcast"
+                  className="hover:text-blue-600 transition-colors"
+                >
                   Podcast
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="hover:text-blue-600 transition-colors">
+                <Link
+                  to="/blog"
+                  className="hover:text-blue-600 transition-colors"
+                >
                   Blogs
                 </Link>
               </li>
@@ -58,7 +79,7 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? null : <Menu className="h-6 w-6 text-white" />}
+              {isMenuOpen ? null : <Menu className="h-10 w-10 text-white" />}
             </button>
           </div>
         </div>
@@ -86,8 +107,18 @@ const Navbar = () => {
           <nav className="p-4">
             <ul className="space-y-4 ">
               {[
-                 "अंतरराष्ट्रीय", "राष्ट्रीय", "राज्य", "राजनीति",
-                "शिक्षा", "रोजगार", "स्वास्थ्य","खेल", "व्यापार","मौसम","जायका", "पर्यटन"
+                "अंतरराष्ट्रीय",
+                "राष्ट्रीय",
+                "राज्य",
+                "राजनीति",
+                "शिक्षा",
+                "रोजगार",
+                "स्वास्थ्य",
+                "खेल",
+                "व्यापार",
+                "मौसम",
+                "जायका",
+                "पर्यटन",
               ].map((category) => (
                 <li key={category}>
                   <Link
@@ -100,12 +131,20 @@ const Navbar = () => {
                 </li>
               ))}
               <li>
-                <Link to="/podcast" className="block text-lg font-semibold text-white hover:text-blue-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  to="/podcast"
+                  className="block text-lg font-semibold text-white hover:text-blue-600 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   Podcast
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="block text-lg font-semibold text-white hover:text-blue-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  to="/blog"
+                  className="block text-lg font-semibold text-white hover:text-blue-600 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   Blogs
                 </Link>
               </li>
@@ -118,5 +157,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-

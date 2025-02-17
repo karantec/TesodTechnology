@@ -49,12 +49,12 @@ const CardsPage = () => {
               className="w-full h-48 object-cover"
               />
               </a>
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">{card.title}</h2>
+            <div className="p-2">
+              <h2 className="text-xl text-blue-500 font-semibold mb-2">{card.title}</h2>
               <p className="text-gray-600">{card.content}</p>
               <p className="text-gray-400 text-sm mt-2">{new Date(card.publishedDate).toLocaleDateString()}</p>
               <div className="mt-4">
-                <span className="text-sm text-blue-600">{card.category}</span>
+                <span className="text-sm text-black font-bold">{card.category}</span>
                 <ul className="flex space-x-2 mt-2">
                   {card.tags?.map((tag, index) => (
                     <li key={index} className="text-xs text-gray-500">{tag}</li>

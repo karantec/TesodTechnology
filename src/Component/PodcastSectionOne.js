@@ -33,8 +33,8 @@ function PodcastSectionOne() {
                 alt="Thumbnail"
                 className="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 dark:bg-gray-500"
               />
-              <div className="p-6 space-y-2 lg:col-span-5">
-                <h3 className="text-2xl font-semibold sm:text-4xl group-hover:underline group-focus:underline">
+              <div className="p-1 mt-2 space-y-2 lg:col-span-5">
+                <h3 className="text-2xl text-blue-500 font-semibold sm:text-4xl group-hover:underline group-focus:underline">
                   {news[0].title}
                 </h3>
                 <p>{news[0].description.slice(0,100)}...</p>
@@ -42,7 +42,7 @@ function PodcastSectionOne() {
             </a>
           )}
 
-          <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid  grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {news.slice(1, podcastNumber).map((ele, index) => (
               <a
                 key={ele._id}
@@ -55,8 +55,8 @@ function PodcastSectionOne() {
                   src={ele.thumbnail}
                   alt={ele.title}
                 />
-                <div className="p-6 space-y-2">
-                  <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
+                <div className="p-1 mt-2  space-y-2">
+                  <h3 className="text-2xl  text-blue-500 font-semibold group-hover:underline group-focus:underline">
                     {ele.title}
                   </h3>
                  
