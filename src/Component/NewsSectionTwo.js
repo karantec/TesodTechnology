@@ -44,7 +44,7 @@ function NewsSectionTwo() {
                 <p className="text-black">{news[0].content}</p>
                 <span className="text-xs text-gray-500 block mt-2">
                   {new Date(news[0].publishedDate).toLocaleDateString()}
-                  <span className="ml-4 font-bold text-black">{news[0].category}</span>
+                  <span className="ml-4 font-bold text-gray-500">{news[0].category}</span>
                 </span>
               </div>
             </a>
@@ -74,7 +74,7 @@ function NewsSectionTwo() {
                   </p>
                   <span className="text-xs text-gray-500 block mt-2">
                     {new Date(ele.publishedDate).toLocaleDateString()}
-                     <span className="ml-4 font-bold text-black">{ele.category}</span>
+                     <span className="ml-4 font-bold text-gray-500">{ele.category}</span>
                   </span>
                 </div>
               </a>
