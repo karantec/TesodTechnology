@@ -6,6 +6,6 @@ const App = () => {
       Welcome to Tesod Technology
     </div>
   )
-}s
+}
 
 export default App
