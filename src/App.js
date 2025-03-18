@@ -1,9 +1,10 @@
 import React from 'react'
+import HeroSection from './Component/Home/Navbar'
 
 const App = () => {
   return (
     <div>
-      Welcome to Tesod Technology
+     <HeroSection/>
     </div>
   )
 }
