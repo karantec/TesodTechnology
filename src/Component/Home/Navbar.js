@@ -41,8 +41,8 @@ const Navbar = () => {
         <div className="container mx-auto flex justify-between items-center px-4 py-3">
           {/* Logo and Company Name */}
           <div className="flex items-center">
-            <img src="/tesod.png" alt="Logo" className="h-20 w-56 mr-2 filter brightness-0 invert" />
-            <span className="font-bold text-2xl">Tesod Technology</span>
+            <img src="/logo2.png" alt="Logo" className="h-24 w-36" />
+            <span className="font-bold text-3xl">Tesod Technology</span>
           </div>
 
           {/* Desktop Navigation */}
