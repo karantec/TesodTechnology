@@ -11,27 +11,35 @@ const Navbar = () => {
   }, [location.pathname]); // Scrolls to top when pathname changes
 
   const topRightItems = [
-    'Internship', 'Case Study', 'Gallery', 'Blog', 
-    'Free Download', 'Support Ticket', 'Login'
+    { name: 'Internship', path: '/internship' },
+    { name: 'Case Study', path: '/case-study' },
+    { name: 'Gallery', path: '/gallery' },
+    { name: 'Blog', path: '/blog' },
+    { name: 'Free Download', path: '/free-download' },
+    { name: 'Support Ticket', path: '/support-ticket' },
+    { name: 'Login', path: '/login' }
   ];
 
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
+    { name: 'Products', path: '/products' },
     { name: 'Services', path: '/services' },
+    { name: 'Team', path: '/team' },
+    { name: 'Testimonials', path: '/testimonial' },
     { name: 'Career', path: '/career' },
     { name: 'Contact', path: '/contact' }
   ];
 
   return (
-    <div className="fixed w-full z-50">
+    <div className="sticky w-full z-50">
       {/* White Top Header */}
       <div className="hidden md:block bg-white text-gray-700 py-2">
         <div className="container mx-auto flex justify-end space-x-4 text-sm px-4">
-          {topRightItems.map((item) => (
-            <a key={item} href="#" className="hover:text-blue-600 text-md transition-colors">
-              {item}
-            </a>
+          {topRightItems.map(({ name, path }) => (
+            <Link key={name} to={path} className="hover:text-blue-600 text-md transition-colors">
+              {name}
+            </Link>
           ))}
         </div>
       </div>
