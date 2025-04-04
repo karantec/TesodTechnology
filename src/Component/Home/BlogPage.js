@@ -1,61 +1,45 @@
-import React, { useState } from "react";
-
-const blogPosts = [
-  {
-    id: 1,
-    title: "The Future of AI in Web Development",
-    image: "blog1.jpg",
-    description: "How artificial intelligence is shaping the future of web development and user experience.",
-    author: "John Doe",
-    authorAvatar: "avatar1.jpg",
-    date: "March 28, 2025",
-    category: "Technology",
-    readTime: "5 min read"
-  },
-  {
-    id: 2,
-    title: "Understanding Tailwind CSS: A Utility-First Approach",
-    image: "blog2.jpg",
-    description: "A deep dive into Tailwind CSS and how it simplifies frontend styling.",
-    author: "Jane Smith",
-    authorAvatar: "avatar2.jpg",
-    date: "March 20, 2025",
-    category: "Design",
-    readTime: "8 min read"
-  },
-  {
-    id: 3,
-    title: "Top 10 JavaScript Frameworks to Learn in 2025",
-    image: "blog3.jpg",
-    description: "An overview of the most popular JavaScript frameworks and their use cases.",
-    author: "Alice Johnson",
-    authorAvatar: "avatar3.jpg",
-    date: "March 15, 2025",
-    category: "Development",
-    readTime: "10 min read"
-  },
-  {
-    id: 4,
-    title: "Responsive Design Strategies for Modern Websites",
-    image: "blog4.jpg",
-    description: "Best practices and techniques for creating responsive websites that work on all devices.",
-    author: "Robert Chen",
-    authorAvatar: "avatar4.jpg",
-    date: "March 10, 2025",
-    category: "Design",
-    readTime: "7 min read"
-  }
-];
-
-const categories = ["All", ...new Set(blogPosts.map(post => post.category))];
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const BlogPage = () => {
+  const [posts, setPosts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [hoveredCard, setHoveredCard] = useState(null);
 
-  const filteredPosts = selectedCategory === "All" 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === selectedCategory);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get("https://tesodtechnologyfinal.onrender.com/blog/get");
+        const apiPosts = response.data.map((post, index) => ({
+          id: post._id || index,
+          title: post.title,
+          image: post.image,
+          description: post.description,
+          author: post.author || "Unknown",
+          authorAvatar: "https://i.pravatar.cc/150?img=" + ((index % 70) + 1), // random avatar
+          date: new Date(post.createdAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+          }),
+          category: "General", // API doesn't provide category, defaulting
+          readTime: "5 min read" // default value
+        }));
+        setPosts(apiPosts);
+      } catch (error) {
+        console.error("Failed to fetch blog posts", error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  const categories = ["All", ...new Set(posts.map(post => post.category))];
+
+  const filteredPosts =
+    selectedCategory === "All"
+      ? posts
+      : posts.filter(post => post.category === selectedCategory);
 
   return (
     <div className="max-w-7xl mx-auto p-6 bg-gray-50">
@@ -65,7 +49,7 @@ const BlogPage = () => {
           Stay updated with the latest trends and insights in web development, design, and technology.
         </p>
       </div>
-      
+
       {/* Category Filter */}
       <div className="flex flex-wrap justify-center gap-2 mb-10">
         {categories.map((category, index) => (
@@ -104,14 +88,14 @@ const BlogPage = () => {
                 {post.category}
               </div>
             </div>
-            
+
             <div className="p-6">
               <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
                 {post.title}
               </h3>
-              
+
               <p className="text-gray-600 mb-4 line-clamp-3">{post.description}</p>
-              
+
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">
                   <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
@@ -125,7 +109,7 @@ const BlogPage = () => {
                 </div>
                 <div className="text-xs text-gray-500">{post.readTime}</div>
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-500">{post.date}</span>
                 <button className="bg-blue-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors transform hover:-translate-y-1 duration-300 flex items-center">
@@ -139,9 +123,6 @@ const BlogPage = () => {
           </div>
         ))}
       </div>
-      
-      {/* Newsletter Subscription */}
-      
     </div>
   );
 };
