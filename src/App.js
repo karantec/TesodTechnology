@@ -18,6 +18,7 @@ import AboutUs from './Component/About/About'
 import TestimonialsPage from './Component/Home/Testimonial'
 import Career from './Component/Home/Career'
 import TeamPage from './Component/Home/Team'
+import Products from './Component/Home/Product'
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
        <Route path="/blog" element={<BlogPage/>}/>
        <Route path="/case-study" element={<Portfolio/>}/>
         <Route path="/contact" element={<ContactSection/>}/>
+        <Route path='/products' element={<Products/>}/>
      
       </Routes>
       <Footer/>
