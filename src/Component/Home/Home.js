@@ -7,17 +7,17 @@ export default function FullPageCarousel() {
   // Sample carousel data - replace with your own images and descriptions
   const slides = [
     {
-      image: "http://www.imagetechnology.com/Upload/Banner/635869032425365283.jpg",
+      image: "https://imgs.search.brave.com/xPWalHAS4364wiBc-YTIlUoRbrt2tDhtksrIWU_safA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9kYXRhLXBhc3N3/b3JkLXNlY3VyaXR5/LWxvY2stZnJlZS1p/bWFnZS5qcGVnP3c9/NjAwJnF1YWxpdHk9/ODA",
       title: "Beautiful Nature",
       description: "Explore the wonders of nature with this stunning landscape view."
     },
     {
-      image: "http://www.imagetechnology.com/Upload/Banner/635869032425365283.jpg",
+      image: "https://imgs.search.brave.com/xPWalHAS4364wiBc-YTIlUoRbrt2tDhtksrIWU_safA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9kYXRhLXBhc3N3/b3JkLXNlY3VyaXR5/LWxvY2stZnJlZS1p/bWFnZS5qcGVnP3c9/NjAwJnF1YWxpdHk9/ODA",
       title: "City Life",
       description: "Experience the vibrant energy of urban architecture and design."
     },
     {
-      image: "http://www.imagetechnology.com/Upload/Banner/635869032425365283.jpg",
+      image: "https://imgs.search.brave.com/xPWalHAS4364wiBc-YTIlUoRbrt2tDhtksrIWU_safA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9kYXRhLXBhc3N3/b3JkLXNlY3VyaXR5/LWxvY2stZnJlZS1p/bWFnZS5qcGVnP3c9/NjAwJnF1YWxpdHk9/ODA",
       title: "Ocean Wonders",
       description: "Dive into the magical world beneath the waves."
     },
