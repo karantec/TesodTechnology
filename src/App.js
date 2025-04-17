@@ -18,6 +18,8 @@ import AboutUs from './Component/About/About'
 import TestimonialsPage from './Component/Home/Testimonial'
 import Career from './Component/Home/Career'
 import TeamPage from './Component/Home/Team'
+import ProductCard from './Component/Home/Product'
+import ProductCards from './ZipCourier'
 
 const App = () => {
   return (
@@ -36,6 +38,8 @@ const App = () => {
        <Route path="/gallery" element={<Gallery/>}/>
        <Route path="/blog" element={<BlogPage/>}/>
        <Route path="/case-study" element={<Portfolio/>}/>
+       <Route path="/product" element={<ProductCard/>}/>
+       <Route path="/zip" element={<ProductCards />}/>
         <Route path="/contact" element={<ContactSection/>}/>
      
       </Routes>

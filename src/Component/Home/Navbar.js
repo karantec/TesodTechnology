@@ -15,9 +15,10 @@ const Navbar = () => {
     { name: 'Case Study', path: '/case-study' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Blog', path: '/blog' },
-    { name: 'Free Download', path: '/free-download' },
+    { name: 'Free Download', path: '/zip' },
     { name: 'Support Ticket', path: '/support-ticket' },
     { name: 'Login', path: '/login' }
+    
   ];
 
   const navItems = [
