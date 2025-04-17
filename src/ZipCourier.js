@@ -7,62 +7,49 @@ const ProductCards = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [itemsPerPage] = useState(6);
   const [downloadLoading, setDownloadLoading] = useState({});
-  
+
   useEffect(() => {
-    // Fetching the product data from the API
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch('https://tesodtechnologyfinal.onrender.com');
+        const response = await fetch('https://tesodtechnologyfinal.onrender.com/product');
         const data = await response.json();
-        
-        setProducts(data);
-        setTotalPages(Math.ceil(data.length / itemsPerPage));
+
+        // Extract products array safely
+        const productList = Array.isArray(data) ? data : data.products || [];
+        setProducts(productList);
+        setTotalPages(Math.ceil(productList.length / itemsPerPage));
       } catch (error) {
         console.error('Error fetching product data:', error);
       } finally {
         setLoading(false);
       }
     };
-    
+
     fetchProducts();
   }, [currentPage, itemsPerPage]);
 
-  // Get current products
+  // Pagination logic
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+  const currentProducts = Array.isArray(products)
+    ? products.slice(indexOfFirstItem, indexOfLastItem)
+    : [];
 
-  // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  
-  // Previous page
   const goToPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
-  
-  // Next page
   const goToNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
-  // Handle download
   const handleDownload = async (productId, productName) => {
     setDownloadLoading(prev => ({ ...prev, [productId]: true }));
-    
+
     try {
-      // In a real implementation, replace with actual API endpoint
-      // const response = await fetch(`https://tesodtechnologyfinal.onrender.com/${productId}/download`);
-      // const blob = await response.blob();
-      
-      // For demo purposes, we'll simulate a delay
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Create a mock download (in real implementation, use the blob from API)
+
       const mockBlob = new Blob(['Mock product data'], { type: 'application/zip' });
       const url = window.URL.createObjectURL(mockBlob);
       const a = document.createElement('a');
@@ -72,11 +59,8 @@ const ProductCards = () => {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      
-      // Show success message or notification here
     } catch (error) {
       console.error('Error downloading file:', error);
-      // Show error message or notification here
     } finally {
       setDownloadLoading(prev => ({ ...prev, [productId]: false }));
     }
@@ -89,7 +73,7 @@ const ProductCards = () => {
       </div>
     );
   }
-  
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
@@ -99,7 +83,7 @@ const ProductCards = () => {
               {product.image && (
                 <div className="h-48 w-full bg-gray-200 overflow-hidden">
                   <img 
-                    src={product.image || "/api/placeholder/400/320"} 
+                    src={product.image} 
                     alt={product.name} 
                     className="w-full h-full object-cover"
                   />
@@ -118,8 +102,7 @@ const ProductCards = () => {
                     </span>
                   )}
                 </div>
-                
-                {/* Free Download Card */}
+
                 <div className="mt-4 mb-4 bg-gray-50 border border-gray-200 rounded-lg p-4">
                   <div className="flex items-center justify-between">
                     <div>
@@ -148,7 +131,7 @@ const ProductCards = () => {
                     </button>
                   </div>
                 </div>
-                
+
                 <div className="flex justify-between items-center">
                   <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
                     View Details
@@ -166,8 +149,8 @@ const ProductCards = () => {
           </div>
         )}
       </div>
-      
-      {/* Pagination controls */}
+
+      {/* Pagination */}
       {products.length > 0 && (
         <div className="flex justify-center items-center mt-6 mb-8">
           <nav className="flex items-center space-x-2">
@@ -178,7 +161,7 @@ const ProductCards = () => {
             >
               Previous
             </button>
-            
+
             <div className="flex items-center space-x-1">
               {[...Array(totalPages).keys()].map(number => (
                 <button
@@ -194,7 +177,7 @@ const ProductCards = () => {
                 </button>
               ))}
             </div>
-            
+
             <button 
               onClick={goToNextPage}
               disabled={currentPage === totalPages}
