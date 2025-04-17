@@ -13,8 +13,8 @@ const ProductCard = () => {
       try {
         setLoading(true);
         // In a real implementation, you might want to pass page and limit parameters
-        // Example: fetch(`http://localhost:8000/product?page=${currentPage}&limit=${itemsPerPage}`)
-        const response = await fetch('http://localhost:8000/product');
+        // Example: fetch(`https://tesodtechnologyfinal.onrender.com?page=${currentPage}&limit=${itemsPerPage}`)
+        const response = await fetch('https://tesodtechnologyfinal.onrender.com');
         const data = await response.json();
         
         // If your API doesn't support pagination, we can handle it client-side

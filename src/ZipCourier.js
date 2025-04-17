@@ -13,7 +13,7 @@ const ProductCards = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:8000/product');
+        const response = await fetch('https://tesodtechnologyfinal.onrender.com');
         const data = await response.json();
         
         setProducts(data);
@@ -56,7 +56,7 @@ const ProductCards = () => {
     
     try {
       // In a real implementation, replace with actual API endpoint
-      // const response = await fetch(`http://localhost:8000/product/${productId}/download`);
+      // const response = await fetch(`https://tesodtechnologyfinal.onrender.com/${productId}/download`);
       // const blob = await response.blob();
       
       // For demo purposes, we'll simulate a delay

@@ -7,13 +7,13 @@ import TesodCallbackForm from './RequestCallback'
 import TestimonialsPage from './Testimonial'
 import Blogtwo from './BlogPagetwo'
 import Gallerytwo from './Gallerytwo'
+import Carousel from './Home'
 
 
 const MainPage = () => {
   return (
     <div>
-
-        <NotFound/>
+        <Carousel/>
         <WhyChooseTesod/>
         <Serve/>
         <TesodCallbackForm/>
