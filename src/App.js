@@ -18,8 +18,12 @@ import AboutUs from './Component/About/About'
 import TestimonialsPage from './Component/Home/Testimonial'
 import Career from './Component/Home/Career'
 import TeamPage from './Component/Home/Team'
+<<<<<<< HEAD
 import ProductCard from './Component/Home/Product'
 import ProductCards from './ZipCourier'
+=======
+import Products from './Component/Home/Product'
+>>>>>>> 88d45ce4317030d2d25bc90fe2a26ed27a18afc6
 
 const App = () => {
   return (
@@ -41,6 +45,7 @@ const App = () => {
        <Route path="/product" element={<ProductCard/>}/>
        <Route path="/zip" element={<ProductCards />}/>
         <Route path="/contact" element={<ContactSection/>}/>
+        <Route path='/products' element={<Products/>}/>
      
       </Routes>
       <Footer/>

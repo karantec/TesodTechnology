@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { Phone, Calendar, Clock, User, Mail, MessageSquare } from 'lucide-react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TesodCallbackForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: '',
-    phone: '',
-    date: '',
-    time: '',
+    phoneNumber: '',
+    preferredDate: '',
+    preferredTime: '',
     message: ''
   });
-  
+
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
@@ -20,37 +22,49 @@ const TesodCallbackForm = () => {
       [name]: value
     }));
   };
-  
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    
-    setTimeout(() => {
-      setIsSubmitted(false);
+    try {
+      const res = await fetch('https://tesodtechnologyfinal.onrender.com/callback/request-callback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.message || 'Something went wrong');
+
+      toast.success("Your callback request has been submitted successfully!");
+      setIsSubmitted(true);
       setFormData({
-        name: '',
+        fullName: '',
         email: '',
-        phone: '',
-        date: '',
-        time: '',
+        phoneNumber: '',
+        preferredDate: '',
+        preferredTime: '',
         message: ''
       });
-    }, 3000);
+
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (err) {
+      toast.error(`Error: ${err.message}`);
+      console.error('Submission error:', err);
+    }
   };
-  
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 via-gray-50 to-blue-50">
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className="w-full max-w-6xl relative overflow-hidden">
-        {/* Background decoration */}
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-0 right-0 bg-blue-500 opacity-10 rounded-full w-64 h-64 -mr-32 -mt-32"></div>
           <div className="absolute bottom-0 left-0 bg-blue-500 opacity-10 rounded-full w-64 h-64 -ml-32 -mb-32"></div>
         </div>
-        
-        {/* Form Card */}
+
         <div className="relative bg-white p-8 md:p-10 rounded-xl shadow-xl border border-gray-200">
-          {/* Header with Logo and Title */}
           <div className="text-center mb-8">
             <div className="inline-block bg-blue-600 text-white font-bold py-2 px-6 rounded-lg mb-4">
               TESOD TECHNOLOGY
@@ -59,13 +73,13 @@ const TesodCallbackForm = () => {
             <div className="w-24 h-1 bg-blue-600 mx-auto mt-3 mb-2"></div>
             <p className="text-gray-600">Our experts will contact you within 24 hours</p>
           </div>
-          
+
           {isSubmitted ? (
             <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg text-center mb-4">
               <div className="flex justify-center mb-2">
                 <div className="bg-green-100 p-2 rounded-full">
-                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
               </div>
@@ -76,100 +90,61 @@ const TesodCallbackForm = () => {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="group">
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-1">Full Name *</label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <User className="h-5 w-5 text-blue-500" />
-                    </div>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="block w-full pl-10 pr-3 py-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white"
-                      placeholder="John Doe"
-                    />
-                  </div>
-                </div>
-                
-                <div className="group">
-                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1">Email Address *</label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Mail className="h-5 w-5 text-blue-500" />
-                    </div>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="block w-full pl-10 pr-3 py-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                </div>
-                
-                <div className="group">
-                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-1">Phone Number *</label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Phone className="h-5 w-5 text-blue-500" />
-                    </div>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      className="block w-full pl-10 pr-3 py-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white"
-                      placeholder="+1 (123) 456-7890"
-                    />
-                  </div>
-                </div>
-                
-                <div className="group">
-                  <label htmlFor="date" className="block text-sm font-semibold text-gray-700 mb-1">Preferred Date *</label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Calendar className="h-5 w-5 text-blue-500" />
-                    </div>
-                    <input
-                      type="date"
-                      id="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={handleChange}
-                      required
-                      className="block w-full pl-10 pr-3 py-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white"
-                    />
-                  </div>
-                </div>
-                
-                <div className="group">
-                  <label htmlFor="time" className="block text-sm font-semibold text-gray-700 mb-1">Preferred Time *</label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Clock className="h-5 w-5 text-blue-500" />
-                    </div>
-                    <input
-                      type="time"
-                      id="time"
-                      name="time"
-                      value={formData.time}
-                      onChange={handleChange}
-                      required
-                      className="block w-full pl-10 pr-3 py-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white"
-                    />
-                  </div>
-                </div>
+                <InputField
+                  icon={<User className="h-5 w-5 text-blue-500" />}
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  placeholder="John Doe"
+                  label="Full Name *"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required
+                />
+                <InputField
+                  icon={<Mail className="h-5 w-5 text-blue-500" />}
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  label="Email Address *"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+                <InputField
+                  icon={<Phone className="h-5 w-5 text-blue-500" />}
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  type="tel"
+                  placeholder="+91 1003456789"
+                  label="Phone Number *"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                  required
+                />
+                <InputField
+                  icon={<Calendar className="h-5 w-5 text-blue-500" />}
+                  id="preferredDate"
+                  name="preferredDate"
+                  type="date"
+                  label="Preferred Date *"
+                  value={formData.preferredDate}
+                  onChange={handleChange}
+                  required
+                />
+                <InputField
+                  icon={<Clock className="h-5 w-5 text-blue-500" />}
+                  id="preferredTime"
+                  name="preferredTime"
+                  type="time"
+                  label="Preferred Time *"
+                  value={formData.preferredTime}
+                  onChange={handleChange}
+                  required
+                />
               </div>
-              
+
               <div className="group col-span-full">
                 <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-1">Message (Optional)</label>
                 <div className="relative">
@@ -187,7 +162,7 @@ const TesodCallbackForm = () => {
                   ></textarea>
                 </div>
               </div>
-              
+
               <div className="text-center pt-4">
                 <button
                   type="submit"
@@ -197,7 +172,7 @@ const TesodCallbackForm = () => {
                   Request Callback
                 </button>
               </div>
-              
+
               <div className="text-center text-sm text-gray-500 mt-2">
                 <p>By submitting this form, you agree to Tesod Technology's privacy policy.</p>
               </div>
@@ -208,5 +183,26 @@ const TesodCallbackForm = () => {
     </div>
   );
 };
+
+const InputField = ({ icon, id, name, type, placeholder, label, value, onChange, required }) => (
+  <div className="group">
+    <label htmlFor={id} className="block text-sm font-semibold text-gray-700 mb-1">{label}</label>
+    <div className="relative">
+      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        {icon}
+      </div>
+      <input
+        type={type}
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="block w-full pl-10 pr-3 py-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white"
+        placeholder={placeholder}
+      />
+    </div>
+  </div>
+);
 
 export default TesodCallbackForm;

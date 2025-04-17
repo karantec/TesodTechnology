@@ -3,11 +3,12 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Gallery = () => {
+const Gallerytwo = () => {
   const [galleryItems, setGalleryItems] = useState([]);
   const itemsPerPage = 4;
-  const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchGalleryData = async () => {
@@ -21,24 +22,19 @@ const Gallery = () => {
     fetchGalleryData();
   }, []);
 
-  const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
-  const currentItems = galleryItems.slice(indexOfFirstItem, indexOfFirstItem + itemsPerPage);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  const displayedItems = galleryItems.slice(0, itemsPerPage);
 
   return (
     <div className="container mx-auto p-8">
       {/* Gallery Heading */}
       <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">
-        Explore Our Gallery
+        Our Latest Gallery
       </h2>
 
       {/* Desktop View */}
       <div className="hidden md:block">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-center">
-          {currentItems.map((item, index) => (
+          {displayedItems.map((item, index) => (
             <div
               key={index}
               className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105 duration-300 ease-in-out"
@@ -61,23 +57,17 @@ const Gallery = () => {
           ))}
         </div>
 
-        {/* Pagination */}
-        <div className="flex justify-center mt-6">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md mr-2 disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage * itemsPerPage >= galleryItems.length}
-            className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>
+        {/* View More Button */}
+        {galleryItems.length > itemsPerPage && (
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={() => navigate("/Gallery")}
+              className="px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors"
+            >
+              View More
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Mobile View */}
@@ -120,4 +110,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default Gallerytwo;

@@ -5,6 +5,9 @@ import WhyChooseTesod from './WhyChoos'
 import Serve from './Serve'
 import TesodCallbackForm from './RequestCallback'
 import TestimonialsPage from './Testimonial'
+import Blogtwo from './BlogPagetwo'
+import Gallerytwo from './Gallerytwo'
+
 
 const MainPage = () => {
   return (
@@ -15,6 +18,9 @@ const MainPage = () => {
         <Serve/>
         <TesodCallbackForm/>
         <TestimonialsPage/>
+        <Blogtwo/>
+        <Gallerytwo/>
+        {/* Uncomment the following line to include DescriptiveCards component */}
         {/* <DescriptiveCards/> */}
       
     </div>

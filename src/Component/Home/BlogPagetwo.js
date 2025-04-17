@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const BlogPage = () => {
+const Blogtwo = () => {
   const [posts, setPosts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [hoveredCard, setHoveredCard] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -16,14 +18,14 @@ const BlogPage = () => {
           image: post.image,
           description: post.description,
           author: post.author || "Unknown",
-          authorAvatar: "https://i.pravatar.cc/150?img=" + ((index % 70) + 1), // random avatar
+          authorAvatar: "https://i.pravatar.cc/150?img=" + ((index % 70) + 1),
           date: new Date(post.createdAt).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric"
           }),
-          category: "General", // API doesn't provide category, defaulting
-          readTime: "5 min read" // default value
+          category: "General", // Default category
+          readTime: "5 min read" // Default read time
         }));
         setPosts(apiPosts);
       } catch (error) {
@@ -35,11 +37,12 @@ const BlogPage = () => {
   }, []);
 
   const categories = ["All", ...new Set(posts.map(post => post.category))];
-
   const filteredPosts =
     selectedCategory === "All"
       ? posts
       : posts.filter(post => post.category === selectedCategory);
+
+  const displayedPosts = filteredPosts.slice(0, 4); // Show only 4 posts
 
   return (
     <div className="max-w-7xl mx-auto p-6 bg-gray-50">
@@ -69,7 +72,7 @@ const BlogPage = () => {
 
       {/* Blog Posts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredPosts.map((post) => (
+        {displayedPosts.map((post) => (
           <div
             key={post.id}
             className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl"
@@ -123,8 +126,20 @@ const BlogPage = () => {
           </div>
         ))}
       </div>
+
+      {/* View More Button */}
+      {filteredPosts.length > 4 && (
+        <div className="mt-10 text-center">
+          <button
+            onClick={() => navigate("/blog")}
+            className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors"
+          >
+            View More
+          </button>
+        </div>
+      )}
     </div>
   );
 };
 
-export default BlogPage;
+export default Blogtwo;
