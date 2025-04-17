@@ -6,7 +6,7 @@ const ProductCards = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [itemsPerPage] = useState(6);
-  const [downloadLoading, setDownloadLoading] = useState({});
+  const [downloadLoading, setDownloadLoading] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -44,25 +44,37 @@ const ProductCards = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
-  const handleDownload = async (productId, productName) => {
-    setDownloadLoading(prev => ({ ...prev, [productId]: true }));
+  // Handle downloading all products as a ZIP
+  const handleDownload = async () => {
+    setDownloadLoading(true);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Trigger the download from the backend API
+      const response = await fetch('https://tesodtechnologyfinal.onrender.com/products/download-zip', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-      const mockBlob = new Blob(['Mock product data'], { type: 'application/zip' });
-      const url = window.URL.createObjectURL(mockBlob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${productName.replace(/\s+/g, '-').toLowerCase()}.zip`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+      // Check if the response is successful
+      if (response.ok) {
+        const blob = await response.blob(); // Get the ZIP file as a Blob
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'products.zip'; // Set the name of the downloaded file
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      } else {
+        throw new Error('Failed to download ZIP file');
+      }
     } catch (error) {
       console.error('Error downloading file:', error);
     } finally {
-      setDownloadLoading(prev => ({ ...prev, [productId]: false }));
+      setDownloadLoading(false);
     }
   };
 
@@ -82,9 +94,9 @@ const ProductCards = () => {
             <div key={product.id || Math.random()} className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:scale-105">
               {product.image && (
                 <div className="h-48 w-full bg-gray-200 overflow-hidden">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
+                  <img
+                    src={product.image}
+                    alt={product.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -109,23 +121,23 @@ const ProductCards = () => {
                       <p className="text-green-600 font-medium">Free Download</p>
                       <p className="text-gray-500 text-sm">ZIP Archive</p>
                     </div>
-                    <button 
-                      onClick={() => handleDownload(product.id || Math.random(), product.name)}
-                      disabled={downloadLoading[product.id]}
+                    <button
+                      onClick={handleDownload}
+                      disabled={downloadLoading}
                       className={`px-4 py-2 rounded-md flex items-center space-x-2 ${
-                        downloadLoading[product.id] 
-                          ? 'bg-gray-300 cursor-not-allowed' 
+                        downloadLoading
+                          ? 'bg-gray-300 cursor-not-allowed'
                           : 'bg-green-600 hover:bg-green-700 text-white'
                       }`}
                     >
-                      {downloadLoading[product.id] ? (
+                      {downloadLoading ? (
                         <>
                           <span className="h-4 w-4 border-2 border-gray-500 border-t-white rounded-full animate-spin"></span>
                           <span>Downloading...</span>
                         </>
                       ) : (
                         <>
-                          <span>Download</span>
+                          <span>Download All Products</span>
                         </>
                       )}
                     </button>
@@ -154,7 +166,7 @@ const ProductCards = () => {
       {products.length > 0 && (
         <div className="flex justify-center items-center mt-6 mb-8">
           <nav className="flex items-center space-x-2">
-            <button 
+            <button
               onClick={goToPreviousPage}
               disabled={currentPage === 1}
               className={`p-2 rounded-md ${currentPage === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-blue-600 hover:bg-blue-100'}`}
@@ -163,7 +175,7 @@ const ProductCards = () => {
             </button>
 
             <div className="flex items-center space-x-1">
-              {[...Array(totalPages).keys()].map(number => (
+              {[...Array(totalPages).keys()].map((number) => (
                 <button
                   key={number + 1}
                   onClick={() => paginate(number + 1)}
@@ -178,7 +190,7 @@ const ProductCards = () => {
               ))}
             </div>
 
-            <button 
+            <button
               onClick={goToNextPage}
               disabled={currentPage === totalPages}
               className={`p-2 rounded-md ${currentPage === totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-blue-600 hover:bg-blue-100'}`}
