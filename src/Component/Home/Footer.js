@@ -7,7 +7,8 @@ import {
   Twitter, 
   Instagram, 
   Linkedin, 
-  Send 
+  Send,
+  ChevronRight 
 } from 'lucide-react';
 
 const Footer = () => {
@@ -45,56 +46,85 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-black text-white">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="bg-gradient-to-b from-slate-900 to-black text-white">
+      {/* Top Pattern */}
+      <div className="h-1 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600"></div>
+      
+      <div className="container mx-auto px-6 py-16">
         {/* Main Footer Content */}
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Company Info */}
-          <div>
-            {/* Company Info */}
-<div className="flex flex-col items-start">
-  {/* Company Logo */}
-  <img 
-    src="tesod.png"  // Replace with actual logo URL
-    alt="Tesod Technology Logo"
-    className="w-80 h-20 mb-4"
-  />
-
-  {/* Description */}
-  <p className="text-sm text-blue-100 mb-4">
-    For inquiries, reach out to our dedicated team for prompt assistance. We're here to address any questions or concerns you may have. Contact us today for personalized support and expert guidance.
-  </p>
-</div>
-
+          <div className="space-y-6">
+            {/* Company Logo */}
+            <div>
+              <img 
+                src="/logo2.png" 
+                alt="Tesod Technology Logo"
+                className="w-48 h-auto"
+              />
+            </div>
+            
+            {/* Description */}
+            <p className="text-gray-300 text-sm leading-relaxed">
+              For inquiries, reach out to our dedicated team for prompt assistance. 
+              We're here to address any questions or concerns you may have. 
+              Contact us today for personalized support and expert guidance.
+            </p>
             
             {/* Contact Info */}
-            <div className="space-y-2">
-              <div className="flex items-center">
-                <MapPin className="mr-2 h-5 w-5" />
-                <span className="text-sm">160 Sonaura, Bujurg,Campierganj Gorakhpur-273158 Uttar Pradesh India</span>
+            <div className="space-y-4 pt-2">
+              <div className="flex items-start">
+                <MapPin className="mr-3 h-5 w-5 text-blue-400 flex-shrink-0 mt-1" />
+                <span className="text-sm text-gray-300">160 Sonaura, Bujurg, Campierganj<br />Gorakhpur-273158<br />Uttar Pradesh, India</span>
               </div>
               <div className="flex items-center">
-                <Phone className="mr-2 h-5 w-5" />
-                <span className="text-sm">+91 7392813136</span>
+                <Phone className="mr-3 h-5 w-5 text-blue-400 flex-shrink-0" />
+                <span className="text-sm text-gray-300 hover:text-white transition-colors">+91 7392813136</span>
               </div>
               <div className="flex items-center">
-                <Mail className="mr-2 h-5 w-5" />
-                <span className="text-sm">info@tesodtechnology.com</span>
+                <Mail className="mr-3 h-5 w-5 text-blue-400 flex-shrink-0" />
+                <a href="mailto:info@tesodtechnology.com" className="text-sm text-gray-300 hover:text-white transition-colors">info@tesodtechnology.com</a>
+              </div>
+            </div>
+            
+            {/* Social Media */}
+            <div className="pt-2">
+              <div className="flex space-x-4">
+                <a href="https://www.facebook.com/people/Tesod-Technology-Private-Limited/100091670361574/?mibextid=ZbWKwL" 
+                   className="bg-blue-600/20 p-2 rounded-full hover:bg-blue-600/40 transition-all">
+                  <Facebook className="h-5 w-5 text-blue-400" />
+                </a>
+                <a href="https://x.com/TesodTechnology" 
+                   className="bg-blue-600/20 p-2 rounded-full hover:bg-blue-600/40 transition-all">
+                  <Twitter className="h-5 w-5 text-blue-400" />
+                </a>
+                <a href="https://www.instagram.com/tesodtechnology/" 
+                   className="bg-blue-600/20 p-2 rounded-full hover:bg-blue-600/40 transition-all">
+                  <Instagram className="h-5 w-5 text-blue-400" />
+                </a>
+                <a href="#" 
+                   className="bg-blue-600/20 p-2 rounded-full hover:bg-blue-600/40 transition-all">
+                  <Linkedin className="h-5 w-5 text-blue-400" />
+                </a>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
           {quickLinks.map((section) => (
-            <div key={section.title}>
-              <h3 className="font-bold mb-4 text-lg">{section.title}</h3>
-              <ul className="space-y-2">
+            <div key={section.title} className="mt-6 md:mt-0">
+              <h3 className="font-bold mb-6 text-lg relative">
+                <span className="relative z-10">{section.title}</span>
+                <span className="absolute bottom-0 left-0 w-12 h-1 bg-blue-500"></span>
+              </h3>
+              <ul className="space-y-3">
                 {section.links.map((link) => (
-                  <li key={link}>
+                  <li key={link} className="transition-transform hover:translate-x-1">
                     <a 
                       href="#" 
-                      className="text-blue-100 hover:text-white transition-colors"
+                      className="text-gray-300 hover:text-blue-400 transition-colors flex items-center"
                     >
+                      <ChevronRight className="h-4 w-4 mr-2 text-blue-500" />
                       {link}
                     </a>
                   </li>
@@ -104,96 +134,39 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Services, Clients, and Products Row */}
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
-          {/* Our Services */}
-          <div>
-            <h3 className="font-bold mb-4 text-lg">Our Services</h3>
-            <ul className="space-y-2">
-              {services.map((service) => (
-                <li key={service}>
-                  <a 
-                    href="#" 
-                    className="text-blue-100 hover:text-white transition-colors"
-                  >
-                    {service}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Our Clients */}
-          <div>
-            <h3 className="font-bold mb-4 text-lg">Our Clients</h3>
-            <ul className="space-y-2">
-              {clients.map((client) => (
-                <li key={client}>
-                  <a 
-                    href="#" 
-                    className="text-blue-100 hover:text-white transition-colors"
-                  >
-                    {client}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Our Products */}
-          <div>
-            <h3 className="font-bold mb-4 text-lg">Our Products</h3>
-            <ul className="space-y-2">
-              {products.map((product) => (
-                <li key={product}>
-                  <a 
-                    href="#" 
-                    className="text-blue-100 hover:text-white transition-colors"
-                  >
-                    {product}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        
 
         {/* Newsletter Signup */}
-        <div className="mt-12 border-t border-blue-700 pt-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
-          <p className="text-blue-100 mb-6">
-            Subscribe to our newsletter for the latest updates and insights.
-          </p>
-          <div className="flex max-w-xl mx-auto">
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
-              className="flex-grow px-4 py-3 rounded-l-lg text-gray-800"
-            />
-            <button className="bg-white text-blue-600 px-6 py-3 rounded-r-lg hover:bg-blue-50 transition-colors flex items-center">
-              <Send className="mr-2" /> Subscribe
-            </button>
+        <div className="mt-16 pt-8 border-t border-gray-800">
+          <div className="max-w-3xl mx-auto text-center">
+            <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
+            <p className="text-gray-300 mb-8 max-w-xl mx-auto">
+              Subscribe to our newsletter for the latest updates, industry insights, and exclusive offers.
+            </p>
+            <div className="flex max-w-md mx-auto rounded-lg overflow-hidden shadow-lg">
+              <input 
+                type="email" 
+                placeholder="Enter your email" 
+                className="flex-grow px-4 py-3 bg-gray-800 border-l-2 border-blue-500 text-white focus:outline-none"
+              />
+              <button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 hover:from-blue-600 hover:to-blue-700 transition-colors flex items-center font-medium">
+                <Send className="mr-2 h-5 w-5" /> Subscribe
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Social Media and Copyright */}
-        <div className="mt-12 pt-6 border-t border-blue-700 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-blue-100">
+        {/* Copyright */}
+        <div className="mt-16 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-gray-400">
             © 2025 Tesod Technology. All Rights Reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="https://www.facebook.com/people/Tesod-Technology-Private-Limited/100091670361574/?mibextid=ZbWKwL" className="hover:text-white transition-colors">
-              <Facebook />
-            </a>
-            <a href="https://x.com/TesodTechnology" className="hover:text-white transition-colors">
-              <Twitter />
-            </a>
-            <a href="https://www.instagram.com/tesodtechnology/" className="hover:text-white transition-colors">
-              <Instagram />
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              <Linkedin />
-            </a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
+            <span className="text-gray-600">|</span>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
+            <span className="text-gray-600">|</span>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Sitemap</a>
           </div>
         </div>
       </div>

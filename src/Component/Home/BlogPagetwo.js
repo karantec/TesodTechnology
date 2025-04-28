@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const Blogtwo = () => {
+const BlogCarousel = () => {
   const [posts, setPosts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const navigate = useNavigate();
+  const carouselRef = useRef(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -37,12 +40,30 @@ const Blogtwo = () => {
   }, []);
 
   const categories = ["All", ...new Set(posts.map(post => post.category))];
-  const filteredPosts =
-    selectedCategory === "All"
-      ? posts
-      : posts.filter(post => post.category === selectedCategory);
+  const filteredPosts = selectedCategory === "All"
+    ? posts
+    : posts.filter(post => post.category === selectedCategory);
 
-  const displayedPosts = filteredPosts.slice(0, 4); // Show only 4 posts
+  const goToPrev = () => {
+    if (isTransitioning || filteredPosts.length === 0) return;
+    setIsTransitioning(true);
+    setCurrentIndex(prev => (prev === 0 ? filteredPosts.length - 1 : prev - 1));
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
+
+  const goToNext = () => {
+    if (isTransitioning || filteredPosts.length === 0) return;
+    setIsTransitioning(true);
+    setCurrentIndex(prev => (prev === filteredPosts.length - 1 ? 0 : prev + 1));
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
+
+  const goToSlide = (index) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex(index);
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
 
   return (
     <div className="max-w-7xl mx-auto p-6 bg-gray-50">
@@ -58,7 +79,10 @@ const Blogtwo = () => {
         {categories.map((category, index) => (
           <button
             key={index}
-            onClick={() => setSelectedCategory(category)}
+            onClick={() => {
+              setSelectedCategory(category);
+              setCurrentIndex(0);
+            }}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
               selectedCategory === category
                 ? "bg-blue-600 text-white shadow-md"
@@ -70,76 +94,122 @@ const Blogtwo = () => {
         ))}
       </div>
 
-      {/* Blog Posts Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {displayedPosts.map((post) => (
-          <div
-            key={post.id}
-            className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl"
-            onMouseEnter={() => setHoveredCard(post.id)}
-            onMouseLeave={() => setHoveredCard(null)}
+      {filteredPosts.length > 0 ? (
+        <div className="relative">
+          {/* Carousel Container */}
+          <div 
+            ref={carouselRef} 
+            className="relative h-full overflow-hidden rounded-xl bg-white shadow-lg"
           >
-            <div className="relative overflow-hidden">
-              <img
-                src={post.image}
-                alt={post.title}
-                className={`w-full h-56 object-cover transition-transform duration-500 ${
-                  hoveredCard === post.id ? "scale-110" : "scale-100"
-                }`}
-              />
-              <div className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                {post.category}
-              </div>
-            </div>
-
-            <div className="p-6">
-              <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
-                {post.title}
-              </h3>
-
-              <p className="text-gray-600 mb-4 line-clamp-3">{post.description}</p>
-
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
-                    <img
-                      src={post.authorAvatar}
-                      alt={post.author}
-                      className="w-full h-full object-cover"
-                    />
+            <div className="flex w-full transition-transform duration-500 ease-in-out"
+                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+              {filteredPosts.map((post) => (
+                <div key={post.id} className="min-w-full">
+                  <div className="flex flex-col md:flex-row h-full">
+                    {/* Image Section */}
+                    <div className="md:w-1/2 relative overflow-hidden">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-64 md:h-full object-cover transition-transform duration-500 hover:scale-110"
+                      />
+                      <div className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        {post.category}
+                      </div>
+                    </div>
+                    
+                    {/* Content Section */}
+                    <div className="md:w-1/2 p-8 flex flex-col justify-between">
+                      <div>
+                        <h3 className="text-2xl font-bold text-gray-800 mb-4 hover:text-blue-600 transition-colors">
+                          {post.title}
+                        </h3>
+                        <p className="text-gray-600 mb-6">{post.description}</p>
+                      </div>
+                      
+                      <div>
+                        <div className="flex items-center justify-between mb-6">
+                          <div className="flex items-center">
+                            <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
+                              <img
+                                src={post.authorAvatar}
+                                alt={post.author}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div>
+                              <span className="block text-sm font-medium text-gray-700">{post.author}</span>
+                              <span className="block text-xs text-gray-500">{post.date}</span>
+                            </div>
+                          </div>
+                          <div className="text-xs text-gray-500">{post.readTime}</div>
+                        </div>
+                        
+                        <button 
+                          className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
+                          onClick={() => navigate(`/blog/${post.id}`)}
+                        >
+                          Read Full Article
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <span className="text-sm font-medium text-gray-700">{post.author}</span>
                 </div>
-                <div className="text-xs text-gray-500">{post.readTime}</div>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-gray-500">{post.date}</span>
-                <button className="bg-blue-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors transform hover:-translate-y-1 duration-300 flex items-center">
-                  Read More
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </button>
-              </div>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
 
-      {/* View More Button */}
-      {filteredPosts.length > 4 && (
-        <div className="mt-10 text-center">
-          <button
-            onClick={() => navigate("/blog")}
-            className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors"
+          {/* Navigation Arrows */}
+          <button 
+            onClick={goToPrev} 
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 z-10"
+            aria-label="Previous slide"
           >
-            View More
+            <ChevronLeft className="w-6 h-6 text-gray-700" />
           </button>
+          
+          <button 
+            onClick={goToNext} 
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 z-10"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-6 h-6 text-gray-700" />
+          </button>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center mt-6 gap-2">
+            {filteredPosts.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  currentIndex === index ? "bg-blue-600 w-6" : "bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="text-center py-16 bg-white rounded-xl shadow">
+          <p className="text-gray-600">No posts found in this category.</p>
         </div>
       )}
+
+      {/* View All Posts Button */}
+      <div className="mt-10 text-center">
+        <button
+          onClick={() => navigate("/blog")}
+          className="bg-blue-600 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors"
+        >
+          View All Posts
+        </button>
+      </div>
     </div>
   );
 };
 
-export default Blogtwo;
+export default BlogCarousel;

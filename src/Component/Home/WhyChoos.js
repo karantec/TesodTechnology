@@ -1,54 +1,52 @@
 import React from 'react';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Shield, DollarSign, HeartHandshake } from 'lucide-react';
 
 const WhyChooseTesod = () => {
   const reasons = [
     {
       title: "Experienced Team",
-      description: "Led by experts in development and digital marketing.",
-      icon: <CheckCircle className="text-blue-500" />
+      description: "Led by industry veterans with 15+ years of expertise in development and digital transformation.",
+      icon: <Shield className="w-10 h-10 text-indigo-600 mb-2" strokeWidth={1.5} />
     },
     {
       title: "Client-Centric Approach",
-      description: "Customized solutions tailored to business needs.",
-      icon: <CheckCircle className="text-blue-500" />
+      description: "Bespoke solutions meticulously crafted to address your unique business challenges and goals.",
+      icon: <HeartHandshake className="w-10 h-10 text-indigo-600 mb-2" strokeWidth={1.5} />
     },
     {
-      title: "Affordable & Transparent Pricing",
-      description: "No hidden costs, just quality services.",
-      icon: <CheckCircle className="text-blue-500" />
+      title: "Transparent Premium Pricing",
+      description: "Exceptional value with clear, upfront pricing. No surprises—just world-class service and results.",
+      icon: <DollarSign className="w-10 h-10 text-indigo-600 mb-2" strokeWidth={1.5} />
     },
     {
-      title: "End-to-End Support",
-      description: "From project inception to final delivery, we ensure 100% satisfaction.",
-      icon: <CheckCircle className="text-blue-500" />
+      title: "Comprehensive Excellence",
+      description: "From strategic planning to implementation and beyond, we ensure flawless execution and lasting success.",
+      icon: <CheckCircle className="w-10 h-10 text-indigo-600 mb-2" strokeWidth={1.5} />
     }
   ];
 
   return (
-    <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Why Choose Tesod Technology?
+    <div className="bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-4 rounded-xl shadow-lg">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+            Why Leading Businesses Choose <span className="text-indigo-600">Tesod Technology</span>
           </h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
+          <div className="w-24 h-1 bg-indigo-600 mx-auto rounded-full"></div>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {reasons.map((reason, index) => (
             <div 
               key={index} 
-              className="bg-gray-50 rounded-lg p-6 shadow-md transition-transform duration-300 hover:transform hover:scale-105"
+              className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center group hover:bg-indigo-50"
             >
-              <div className="flex items-center mb-4">
-                <div className="mr-4 text-xl">
-                  {reason.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {reason.title}
-                </h3>
+              <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                {reason.icon}
               </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                {reason.title}
+              </h3>
               <p className="text-gray-600">
                 {reason.description}
               </p>
