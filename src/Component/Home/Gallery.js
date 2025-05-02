@@ -14,7 +14,7 @@ const PremiumGallery = () => {
     const fetchGalleryData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("https://tesodtechnologyfinal.onrender.com/gallery/Gallery");
+        const response = await axios.get("https://tesodtechnologyfinal.onrender.com/gallery");
         setGalleryItems(response.data);
         setFilteredItems(response.data);
         
