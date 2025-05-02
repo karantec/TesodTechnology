@@ -8,6 +8,7 @@ import TestimonialsPage from './Testimonial'
 import Blogtwo from './BlogPagetwo'
 import Gallerytwo from './Gallerytwo'
 import Carousel from './Home'
+import OurWorkVideo from './OurWorkVideo'
 
 
 const MainPage = () => {
@@ -17,6 +18,7 @@ const MainPage = () => {
         <WhyChooseTesod/>
         <Serve/>
         <TesodCallbackForm/>
+        <OurWorkVideo />
         <TestimonialsPage/>
         <Blogtwo/>
         <Gallerytwo/>
