@@ -49,8 +49,6 @@ const OurWorkVideo = () => {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Work in Action</h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
             See how we've helped businesses transform their digital presence and achieve outstanding results.
           </p>
@@ -77,12 +75,6 @@ const OurWorkVideo = () => {
             <p className="text-gray-600 italic mb-6">
               "Our team is dedicated to delivering projects that exceed expectations and drive real business value."
             </p>
-            <a 
-              href="/portfolio" 
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
-            >
-              View Our Portfolio
-            </a>
           </div>
         </div>
       </div>
