@@ -21,6 +21,7 @@ import TeamPage from './Component/Home/Team'
 import ProductCard from './Component/Home/Product'
 import ProductCards from './ZipCourier'
 import Products from './Component/Home/Product'
+import OurWorkVideo from './Component/Home/OurWorkVideo'
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/Internship" element={<Career/>}/>
        <Route path="/career" element={<InternshipApplication/>}/>
        <Route path="/services" element={<Services/>}/>
+       <Route path="/ourworkvideo" element={<OurWorkVideo />} />
         <Route path="/job" element={<JobOpenings/>}/>
        <Route path="/gallery" element={<Gallery/>}/>
        <Route path="/blog" element={<BlogPage/>}/>
