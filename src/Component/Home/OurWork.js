@@ -10,15 +10,15 @@ import {
 } from "lucide-react";
 
 const Works = () => {
-  const [services, setServices] = useState([]);
-  const [filteredServices, setFilteredServices] = useState([]);
+  const [works, setWorks] = useState([]);
+  const [filteredWorks, setFilteredWorks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All");
   const navigate = useNavigate();
 
-  // Define categories
+  // Define categories - using the ones from your sample data
   const categories = [
     "All",
     "Apps",
@@ -33,20 +33,20 @@ const Works = () => {
   ];
 
   useEffect(() => {
-    const fetchServices = async () => {
+    const fetchWorks = async () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://tesodtechnologyfinal.onrender.com/services/"
+          "https://tesodtechnologyfinal.onrender.com/works"
         );
 
         if (!response.ok) {
-          throw new Error("Failed to fetch services");
+          throw new Error("Failed to fetch works");
         }
 
         const data = await response.json();
-        setServices(data.slice(0, 6)); // Show only first 6 services
-        setFilteredServices(data.slice(0, 6)); // Initialize filtered services
+        setWorks(data);
+        setFilteredWorks(data); // Initialize filtered works with all works
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -54,43 +54,29 @@ const Works = () => {
       }
     };
 
-    fetchServices();
+    fetchWorks();
   }, []);
 
-  // Filter services based on category
-  const filterServices = (category) => {
+  // Filter works based on category
+  const filterWorks = (category) => {
     setActiveCategory(category);
 
     if (category === "All") {
-      setFilteredServices(services);
+      setFilteredWorks(works);
       return;
     }
 
-    // This is a simulation of filtering since we don't know the exact structure of your service objects
-    // Adjust this logic based on how categories are actually stored in your service objects
-    const filtered = services.filter((service) => {
-      const serviceTitle = service.title?.toLowerCase() || "";
-      const serviceDescription = service.description?.toLowerCase() || "";
-      const categoryLower = category.toLowerCase();
+    const filtered = works.filter((work) => work.category === category);
 
-      return (
-        serviceTitle.includes(categoryLower) ||
-        serviceDescription.includes(categoryLower)
-      );
-    });
-
-    setFilteredServices(filtered.length > 0 ? filtered : services);
+    setFilteredWorks(filtered);
   };
 
-  const getIconForService = (title) => {
-    const titleLower = title?.toLowerCase() || "";
+  const getIconForCategory = (category) => {
+    const categoryLower = category?.toLowerCase() || "";
 
-    if (titleLower.includes("development") || titleLower.includes("web")) {
+    if (categoryLower.includes("website") || categoryLower.includes("web")) {
       return <Briefcase className="w-6 h-6 text-indigo-600" />;
-    } else if (
-      titleLower.includes("consultation") ||
-      titleLower.includes("strategy")
-    ) {
+    } else if (categoryLower.includes("ads") || categoryLower.includes("seo")) {
       return <Clock className="w-6 h-6 text-indigo-600" />;
     } else {
       return <Award className="w-6 h-6 text-indigo-600" />;
@@ -98,7 +84,7 @@ const Works = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-gray-50 to-gray-100 py-24">
+    <section className="bg-gradient-to-br from-indigo-50 via-gray-50 to-blue-50 py-24">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -123,7 +109,7 @@ const Works = () => {
               {categories.map((category) => (
                 <button
                   key={category}
-                  onClick={() => filterServices(category)}
+                  onClick={() => filterWorks(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                     activeCategory === category
                       ? "bg-indigo-600 text-white shadow-md"
@@ -167,47 +153,69 @@ const Works = () => {
           </div>
         )}
 
-        {/* Services Grid */}
+        {/* Works Grid */}
         {!loading && !error && (
           <>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {filteredServices.length > 0 ? (
-                filteredServices.map((service, index) => (
+              {filteredWorks.length > 0 ? (
+                filteredWorks.map((work, index) => (
                   <div
-                    key={service._id}
+                    key={work._id}
                     className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col"
                     onMouseEnter={() => setHoveredIndex(index)}
                     onMouseLeave={() => setHoveredIndex(null)}
                   >
-                    {/* Service Image with Overlay */}
+                    {/* Work Image with Overlay */}
                     <div className="relative w-full pt-[60%] overflow-hidden">
                       <img
-                        src={service.image}
-                        alt={service.title}
+                        src={work.image}
+                        alt={work.title}
                         className={`absolute top-0 left-0 w-full h-full object-cover transition-transform duration-700 ${
                           hoveredIndex === index ? "scale-110" : "scale-100"
                         }`}
                         onError={(e) => {
                           e.target.onerror = null;
                           e.target.src =
-                            "https://via.placeholder.com/600x400?text=Premium+Service";
+                            "https://via.placeholder.com/600x400?text=Work+Example";
                         }}
                       />
-                      {/* Premium Overlay */}
+                      {/* Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-60"></div>
+
+                      {/* External Link */}
+                      {work.link && (
+                        <a
+                          href={work.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute bottom-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-indigo-50 transition-colors"
+                        >
+                          <ExternalLink className="w-5 h-5 text-indigo-600" />
+                        </a>
+                      )}
                     </div>
 
-                    {/* Service Content */}
+                    {/* Work Content */}
                     <div className="p-6 flex flex-col flex-grow">
                       <div className="flex items-center mb-4">
-                        {getIconForService(service.title)}
+                        {getIconForCategory(work.category)}
                         <h3 className="text-xl font-bold text-gray-800 ml-2">
-                          {service.title}
+                          {work.title}
                         </h3>
                       </div>
 
-                      <p className="text-gray-600 mb-6 flex-grow line-clamp-4">
-                        {service.description}
+                      <div className="mt-2 mb-4">
+                        <span className="inline-block bg-indigo-100 text-indigo-800 text-xs font-medium px-3 py-1 rounded-full">
+                          {work.category}
+                        </span>
+                      </div>
+
+                      <p className="text-gray-500 text-sm mt-auto">
+                        {new Date(work.createdAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })}
                       </p>
                     </div>
                   </div>
@@ -215,38 +223,37 @@ const Works = () => {
               ) : (
                 <div className="col-span-3 text-center py-16">
                   <p className="text-gray-500 text-lg">
-                    No services found in this category. Try another filter.
+                    No works found in this category. Try another filter.
                   </p>
                 </div>
               )}
             </div>
 
-            {filteredServices.length === 0 && (
+            {filteredWorks.length === 0 && (
               <div className="mt-8 text-center">
                 <button
-                  onClick={() => filterServices("All")}
+                  onClick={() => filterWorks("All")}
                   className="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition-colors"
                 >
-                  Show All Services
+                  Show All Works
                 </button>
               </div>
             )}
-          </>
-        )}
 
-        {/* View All Services */}
-        {!loading && !error && filteredServices.length > 0 && (
-          <div className="mt-16 text-center">
-            <button
-              onClick={() => navigate("/services")}
-              className="relative inline-flex items-center px-8 py-3 overflow-hidden text-lg font-medium text-white bg-indigo-600 rounded-md shadow-md group hover:bg-indigo-800 transition-all duration-300"
-            >
-              <span className="relative flex items-center">
-                P View All Services
-                <ExternalLink className="ml-2 w-5 h-5" />
-              </span>
-            </button>
-          </div>
+            {/* Pagination or View More button could go here */}
+            {filteredWorks.length > 0 &&
+              filteredWorks.length < works.length && (
+                <div className="mt-12 text-center">
+                  <button
+                    onClick={() => filterWorks("All")}
+                    className="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-800 transition-colors"
+                  >
+                    View All Works
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </button>
+                </div>
+              )}
+          </>
         )}
       </div>
     </section>
