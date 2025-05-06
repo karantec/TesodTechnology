@@ -168,13 +168,6 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Newsletter Signup */}
-        <div className="mt-16 pt-8 border-t border-gray-800">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="flex max-w-md mx-auto rounded-lg overflow-hidden shadow-lg"></div>
-          </div>
-        </div>
-
         {/* Copyright */}
         <div className="mt-16 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-400">
