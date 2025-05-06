@@ -53,7 +53,7 @@ const OurWorkVideo = () => {
       id="our-work"
     >
       {/* Abstract background with gradient and patterns */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-800 to-blue-900 opacity-90"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700 opacity-90"></div>
 
       {/* Animated background shapes */}
       <div className="absolute inset-0 overflow-hidden">
