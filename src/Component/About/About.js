@@ -114,7 +114,7 @@ const AboutUs = () => {
           </div>
         </div>
 
-        {/* Services Section - Premium Layout */}
+        {/* Services Section - Premium Layout with Images */}
         <div className="mb-24">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 inline-block relative">
@@ -127,16 +127,13 @@ const AboutUs = () => {
             {/* Web Development Card */}
             <div className="group">
               <div className="bg-white rounded-2xl shadow-lg transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2 overflow-hidden h-full flex flex-col">
-                <div className="h-32 bg-gradient-to-r from-blue-600 to-blue-700 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                  <svg
-                    className="w-16 h-16 text-white relative z-10"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"></path>
-                  </svg>
+                {/* Image replacing the gradient div and SVG */}
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src="/web.jpg" 
+                    alt="Web Development"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
                 <div className="p-8 flex-grow">
                   <h3 className="text-2xl font-semibold mb-4 text-blue-600">
@@ -167,16 +164,13 @@ const AboutUs = () => {
             {/* Android App Development Card */}
             <div className="group">
               <div className="bg-white rounded-2xl shadow-lg transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2 overflow-hidden h-full flex flex-col">
-                <div className="h-32 bg-gradient-to-r from-indigo-600 to-indigo-700 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-indigo-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                  <svg
-                    className="w-16 h-16 text-white relative z-10"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"></path>
-                  </svg>
+                {/* Image replacing the gradient div and SVG */}
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src="/android.jpg" 
+                    alt="Android App Development"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
                 <div className="p-8 flex-grow">
                   <h3 className="text-2xl font-semibold mb-4 text-indigo-600">
@@ -206,16 +200,13 @@ const AboutUs = () => {
             {/* Digital Marketing Card */}
             <div className="group">
               <div className="bg-white rounded-2xl shadow-lg transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2 overflow-hidden h-full flex flex-col">
-                <div className="h-32 bg-gradient-to-r from-purple-600 to-purple-700 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-purple-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                  <svg
-                    className="w-16 h-16 text-white relative z-10"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
+                {/* Image replacing the gradient div and SVG */}
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src="/digital.jpg" 
+                    alt="Digital Marketing"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
                 <div className="p-8 flex-grow">
                   <h3 className="text-2xl font-semibold mb-4 text-purple-600">
