@@ -16,6 +16,7 @@ const Works = () => {
   const [error, setError] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [visibleCount, setVisibleCount] = useState(6); // Show 6 cards initially
   const navigate = useNavigate();
 
   // Define categories - using the ones from your sample data
@@ -60,6 +61,7 @@ const Works = () => {
   // Filter works based on category
   const filterWorks = (category) => {
     setActiveCategory(category);
+    setVisibleCount(6); // Reset visible count when filtering
 
     if (category === "All") {
       setFilteredWorks(works);
@@ -67,8 +69,22 @@ const Works = () => {
     }
 
     const filtered = works.filter((work) => work.category === category);
-
     setFilteredWorks(filtered);
+  };
+
+  // Handle view more functionality
+  const handleViewMore = () => {
+    setVisibleCount(prev => prev + 6); // Show 6 more cards
+  };
+
+  // Handle view less functionality
+  const handleViewLess = () => {
+    setVisibleCount(6); // Reset to show only 6 cards
+    // Scroll to top of works section
+    document.querySelector('.works-section')?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
   };
 
   const getIconForCategory = (category) => {
@@ -83,8 +99,13 @@ const Works = () => {
     }
   };
 
+  // Get the works to display based on visible count
+  const worksToDisplay = filteredWorks.slice(0, visibleCount);
+  const hasMoreWorks = filteredWorks.length > visibleCount;
+  const showingAll = visibleCount >= filteredWorks.length;
+
   return (
-    <section className="bg-gradient-to-br from-indigo-50 via-gray-50 to-blue-50 py-24">
+    <section className="works-section bg-gradient-to-br from-indigo-50 via-gray-50 to-blue-50 py-24">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -156,9 +177,19 @@ const Works = () => {
         {/* Works Grid */}
         {!loading && !error && (
           <>
+            {/* Results Count */}
+            {filteredWorks.length > 0 && (
+              <div className="mb-6 text-center">
+                <p className="text-gray-600">
+                  Showing {Math.min(visibleCount, filteredWorks.length)} of {filteredWorks.length} works
+                  {activeCategory !== "All" && ` in "${activeCategory}"`}
+                </p>
+              </div>
+            )}
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {filteredWorks.length > 0 ? (
-                filteredWorks.map((work, index) => (
+              {worksToDisplay.length > 0 ? (
+                worksToDisplay.map((work, index) => (
                   <div
                     key={work._id}
                     className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col"
@@ -229,6 +260,7 @@ const Works = () => {
               )}
             </div>
 
+            {/* No Results - Show All Works Button */}
             {filteredWorks.length === 0 && (
               <div className="mt-8 text-center">
                 <button
@@ -240,19 +272,35 @@ const Works = () => {
               </div>
             )}
 
-            {/* Pagination or View More button could go here */}
-            {filteredWorks.length > 0 &&
-              filteredWorks.length < works.length && (
-                <div className="mt-12 text-center">
+            {/* View More / View Less Buttons */}
+            {filteredWorks.length > 0 && (
+              <div className="mt-12 text-center space-y-4">
+                {hasMoreWorks && (
                   <button
-                    onClick={() => filterWorks("All")}
-                    className="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-800 transition-colors"
+                    onClick={handleViewMore}
+                    className="inline-flex items-center bg-indigo-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
                   >
-                    View All Works
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    View More Works
+                    <ArrowRight className="w-5 h-5 ml-2" />
                   </button>
-                </div>
-              )}
+                )}
+                
+                {visibleCount > 6 && showingAll && (
+                  <div className="flex flex-col items-center space-y-2">
+                    <p className="text-gray-600 text-sm">
+                      You've reached the end of {activeCategory === "All" ? "all works" : `${activeCategory} works`}
+                    </p>
+                    <button
+                      onClick={handleViewLess}
+                      className="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-800 transition-colors"
+                    >
+                      Back to Top
+                      <ArrowRight className="w-4 h-4 ml-2 transform rotate-270" />
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </>
         )}
       </div>
