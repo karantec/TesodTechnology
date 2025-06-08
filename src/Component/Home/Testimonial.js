@@ -25,10 +25,6 @@ const StarRating = ({ rating = 5 }) => {
         />
       ))}
 
-      {hasHalfStar && (
-        <StarHalf className="w-5 h-5 text-amber-500 fill-amber-500" />
-      )}
-
       {[...Array(5 - fullStars - (hasHalfStar ? 1 : 0))].map((_, i) => (
         <Star key={`empty-star-${i}`} className="w-5 h-5 text-amber-500" />
       ))}
