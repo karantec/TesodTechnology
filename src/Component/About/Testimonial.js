@@ -1,66 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
-// Sample testimonial data
-const testimonialData = [
-  {
-    id: 1,
-    name: "Sarah Johnson",
-    role: "Marketing Director, TechCorp",
-    image: "/api/placeholder/80/80",
-    content:
-      "Working with this team transformed our online presence completely. Their attention to detail and commitment to quality exceeded our expectations. We saw a 40% increase in customer engagement within just two months.",
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: "Michael Chen",
-    role: "CEO, StartUp Innovations",
-    image: "/api/placeholder/80/80",
-    content:
-      "As a startup founder, I needed a partner who understood my vision and could work within our budget constraints. This company delivered beyond what I thought possible and became an essential part of our success story.",
-    rating: 5,
-  },
-  {
-    id: 3,
-    name: "Emily Rodriguez",
-    role: "Small Business Owner",
-    image: "/api/placeholder/80/80",
-    content:
-      "I was hesitant about investing in professional services, but it's been the best decision for my business. Their team was responsive, creative, and truly cared about helping my business grow.",
-    rating: 4,
-  },
-  {
-    id: 4,
-    name: "David Williams",
-    role: "Project Manager, Enterprise Solutions",
-    image: "/api/placeholder/80/80",
-    content:
-      "We've worked with many vendors over the years, but none have provided the level of expertise and dedication that we experienced here. They're now our go-to partner for all our projects.",
-    rating: 5,
-  },
-  {
-    id: 5,
-    name: "Lisa Thompson",
-    role: "Director of Operations, HealthLife",
-    image: "/api/placeholder/80/80",
-    content:
-      "In our industry, compliance and attention to detail are critical. This team not only understood our unique requirements but provided solutions that were both innovative and fully compliant with industry standards.",
-    rating: 5,
-  },
-  {
-    id: 6,
-    name: "Robert Kim",
-    role: "E-commerce Manager",
-    image: "/api/placeholder/80/80",
-    content:
-      "Our online sales have increased by 65% since implementing their recommendations. Their team took the time to understand our products and customers, resulting in a strategy that really worked for us.",
-    rating: 4,
-  },
-];
-
-// Star rating component
-const StarRating = ({ rating }) => {
+// Star rating component (fixed rating of 5 since API doesn't provide ratings)
+const StarRating = ({ rating = 5 }) => {
   const stars = [];
   for (let i = 1; i <= 5; i++) {
     stars.push(
@@ -83,69 +24,210 @@ const TestimonialCard = ({ testimonial }) => {
     <div className="bg-white rounded-lg shadow-lg p-6 mb-6 hover:shadow-xl transition-shadow duration-300">
       <div className="flex items-center mb-4">
         <img
-          src={testimonial.image}
+          src={testimonial.photo}
           alt={testimonial.name}
           className="w-16 h-16 rounded-full object-cover mr-4"
+          onError={(e) => {
+            e.target.src = "/api/placeholder/80/80"; // Fallback image
+          }}
         />
         <div>
           <h3 className="font-bold text-lg">{testimonial.name}</h3>
-          <p className="text-gray-600">{testimonial.role}</p>
+          <p className="text-gray-600">{testimonial.position}</p>
+          {testimonial.organization && (
+            <p className="text-sm text-gray-500">{testimonial.organization}</p>
+          )}
         </div>
       </div>
-      <StarRating rating={testimonial.rating} />
-      <p className="mt-4 text-gray-700 italic">"{testimonial.content}"</p>
+      <StarRating rating={5} />
+      <p className="mt-4 text-gray-700 italic">"{testimonial.message}"</p>
+    </div>
+  );
+};
+
+// Loading component
+const LoadingCard = () => {
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6 mb-6 animate-pulse">
+      <div className="flex items-center mb-4">
+        <div className="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
+        <div>
+          <div className="h-4 bg-gray-300 rounded w-32 mb-2"></div>
+          <div className="h-3 bg-gray-300 rounded w-48"></div>
+        </div>
+      </div>
+      <div className="flex mb-4">
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="w-5 h-5 bg-gray-300 rounded mr-1"></div>
+        ))}
+      </div>
+      <div className="space-y-2">
+        <div className="h-3 bg-gray-300 rounded"></div>
+        <div className="h-3 bg-gray-300 rounded"></div>
+        <div className="h-3 bg-gray-300 rounded w-3/4"></div>
+      </div>
     </div>
   );
 };
 
 const TestimonialsPage = () => {
+  const [testimonials, setTestimonials] = useState([]);
   const [visibleTestimonials, setVisibleTestimonials] = useState(4);
-  const navigate = useNavigate(); // Using the useNavigate hook from React Router v6
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch testimonials from API
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          "https://tesodtechnologyfinal.onrender.com/testimonial/Testimonial"
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setTestimonials(data);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching testimonials:", err);
+        setError("Failed to load testimonials. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
 
   const handleSeeMoreClick = () => {
-    navigate("/testimonials"); // Navigates to the testimonials page
+    if (visibleTestimonials < testimonials.length) {
+      setVisibleTestimonials(testimonials.length); // Show all testimonials
+    } else {
+      alert("All testimonials are now displayed!"); // Simple alert instead of navigation
+    }
+  };
+
+  const handleLoadMoreClick = () => {
+    setVisibleTestimonials((prev) => Math.min(prev + 3, testimonials.length));
   };
 
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header section */}
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h1 className="text-4xl font-bold mb-4">What Our Clients Say</h1>
+          <p className="text-xl opacity-90">
+            Discover how we've helped businesses achieve their goals
+          </p>
+        </div>
+      </div>
 
       {/* Main content */}
       <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Testimonials grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonialData.slice(0, visibleTestimonials).map((testimonial) => (
-            <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-          ))}
-        </div>
-
-        {/* See More button */}
-        {visibleTestimonials < testimonialData.length && (
-          <div className="mt-8 text-center">
+        {/* Error state */}
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-8">
+            <p>{error}</p>
             <button
-              onClick={handleSeeMoreClick}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105"
+              onClick={() => window.location.reload()}
+              className="mt-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
             >
-              See More
+              Retry
             </button>
           </div>
         )}
 
+        {/* Loading state */}
+        {loading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, index) => (
+              <LoadingCard key={index} />
+            ))}
+          </div>
+        )}
+
+        {/* Testimonials grid */}
+        {!loading && !error && testimonials.length > 0 && (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {testimonials.slice(0, visibleTestimonials).map((testimonial) => (
+                <TestimonialCard
+                  key={testimonial._id}
+                  testimonial={testimonial}
+                />
+              ))}
+            </div>
+
+            {/* Load More / See More buttons */}
+            {visibleTestimonials < testimonials.length && (
+              <div className="mt-8 text-center space-x-4">
+                <button
+                  onClick={handleLoadMoreClick}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105"
+                >
+                  Load More
+                </button>
+                <button
+                  onClick={handleSeeMoreClick}
+                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105"
+                >
+                  See All Testimonials
+                </button>
+              </div>
+            )}
+
+            {/* Stats section */}
+            <div className="mt-16 bg-white rounded-lg shadow-lg p-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <h3 className="text-3xl font-bold text-blue-600">
+                    {testimonials.length}+
+                  </h3>
+                  <p className="text-gray-600">Happy Clients</p>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-green-600">100%</h3>
+                  <p className="text-gray-600">Satisfaction Rate</p>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-purple-600">5★</h3>
+                  <p className="text-gray-600">Average Rating</p>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Empty state */}
+        {!loading && !error && testimonials.length === 0 && (
+          <div className="text-center py-12">
+            <h2 className="text-2xl font-bold text-gray-600 mb-4">
+              No testimonials available
+            </h2>
+            <p className="text-gray-500">
+              Check back later for client testimonials.
+            </p>
+          </div>
+        )}
+
         {/* Call to action */}
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-8">
           <h2 className="text-2xl font-bold mb-4">
             Ready to join our success stories?
           </h2>
-          <p className="mb-6 text-gray-700">
+          <p className="mb-6 opacity-90">
             Contact us today to discuss how we can help achieve your goals.
           </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg">
+          <button className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105">
             Get Started
           </button>
         </div>
       </div>
-
-      {/* Footer */}
     </div>
   );
 };
