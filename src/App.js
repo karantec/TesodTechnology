@@ -23,6 +23,7 @@ import ProductCards from "./ZipCourier";
 import Products from "./Component/Home/Product";
 import OurWorkVideo from "./Component/Home/OurWorkVideo";
 import Work from "./Component/Home/Work";
+import Schedule from "./Component/Home/Schedule";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/testimonial" element={<TestimonialsPage />} />
         <Route path="/career" element={<Career />} />
         <Route path="/team" element={<TeamPage />} />
+        <Route path="/schedule" element={<Schedule />} />
         <Route path="/Internship" element={<Career />} />
         <Route path="/career" element={<InternshipApplication />} />
         <Route path="/services" element={<Services />} />

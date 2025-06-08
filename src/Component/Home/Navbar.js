@@ -25,7 +25,7 @@ const Navbar = () => {
     { name: "Gallery", path: "/gallery" },
     { name: "Blog", path: "/blog" },
 
-    { name: "Schedule a Meeting", path: "/support-ticket" },
+    { name: "Schedule a Meeting", path: "/schedule" },
     { name: "Login", path: "/login" },
   ];
 
