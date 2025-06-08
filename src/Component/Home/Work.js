@@ -16,7 +16,6 @@ const Works = () => {
   const [error, setError] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All");
-  const [visibleCount, setVisibleCount] = useState(6); // Show 6 cards initially
   const navigate = useNavigate();
 
   // Define categories - using the ones from your sample data
@@ -61,7 +60,6 @@ const Works = () => {
   // Filter works based on category
   const filterWorks = (category) => {
     setActiveCategory(category);
-    setVisibleCount(6); // Reset visible count when filtering
 
     if (category === "All") {
       setFilteredWorks(works);
@@ -70,21 +68,6 @@ const Works = () => {
 
     const filtered = works.filter((work) => work.category === category);
     setFilteredWorks(filtered);
-  };
-
-  // Handle view more functionality - redirect to /work page
-  const handleViewMore = () => {
-    navigate("/work");
-  };
-
-  // Handle view less functionality
-  const handleViewLess = () => {
-    setVisibleCount(6); // Reset to show only 6 cards
-    // Scroll to top of works section
-    document.querySelector(".works-section")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
   };
 
   const getIconForCategory = (category) => {
@@ -98,11 +81,6 @@ const Works = () => {
       return <Award className="w-6 h-6 text-indigo-600" />;
     }
   };
-
-  // Get the works to display based on visible count
-  const worksToDisplay = filteredWorks.slice(0, visibleCount);
-  const hasMoreWorks = filteredWorks.length > visibleCount;
-  const showingAll = visibleCount >= filteredWorks.length;
 
   return (
     <section className="works-section bg-gradient-to-br from-indigo-50 via-gray-50 to-blue-50 py-24">
@@ -181,16 +159,15 @@ const Works = () => {
             {filteredWorks.length > 0 && (
               <div className="mb-6 text-center">
                 <p className="text-gray-600">
-                  Showing {Math.min(visibleCount, filteredWorks.length)} of{" "}
-                  {filteredWorks.length} works
+                  Showing {filteredWorks.length} works
                   {activeCategory !== "All" && ` in "${activeCategory}"`}
                 </p>
               </div>
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {worksToDisplay.length > 0 ? (
-                worksToDisplay.map((work, index) => (
+              {filteredWorks.length > 0 ? (
+                filteredWorks.map((work, index) => (
                   <div
                     key={work._id}
                     className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col"
@@ -269,19 +246,6 @@ const Works = () => {
                   className="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition-colors"
                 >
                   Show All Works
-                </button>
-              </div>
-            )}
-
-            {/* View More Button - Always show if there are works */}
-            {filteredWorks.length > 0 && (
-              <div className="mt-12 text-center">
-                <button
-                  onClick={handleViewMore}
-                  className="inline-flex items-center bg-indigo-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
-                >
-                  View All Works
-                  <ArrowRight className="w-5 h-5 ml-2" />
                 </button>
               </div>
             )}

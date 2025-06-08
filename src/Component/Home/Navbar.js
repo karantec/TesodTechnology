@@ -35,6 +35,7 @@ const Navbar = () => {
     { name: "Products", path: "/products" },
     { name: "Services", path: "/services" },
     { name: "Team", path: "/team" },
+    { name: "Work", path: "/work" },
     { name: "Testimonials", path: "/testimonial" },
     { name: "Career", path: "/career" },
     { name: "Contact", path: "/contact" },
@@ -105,9 +106,9 @@ const Navbar = () => {
                 {name}
               </Link>
             ))}
-            <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white px-6 py-2.5 rounded-md shadow-lg hover:shadow-blue-500/30 transition-all duration-300 font-medium">
+            {/* <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white px-6 py-2.5 rounded-md shadow-lg hover:shadow-blue-500/30 transition-all duration-300 font-medium">
               Get Free Quotation
-            </button>
+            </button> */}
           </div>
 
           {/* Hamburger Menu Toggle - Visible on all screens except large (lg) screens */}
@@ -141,11 +142,11 @@ const Navbar = () => {
                 {name}
               </Link>
             ))}
-            <div className="pt-4">
+            {/* <div className="pt-4">
               <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white px-6 py-3 rounded-md shadow-lg transition-all duration-300 font-medium">
                 Get Free Quotation
               </button>
-            </div>
+            </div> */}
 
             {/* Top menu items also included in hamburger for tablet and mobile */}
             <div className="pt-6 mt-6 border-t border-gray-800">

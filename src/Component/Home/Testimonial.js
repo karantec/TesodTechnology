@@ -1,5 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, Quote, Star, StarHalf } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Quote,
+  Star,
+  StarHalf,
+  TrendingUp,
+  Users,
+  Award,
+} from "lucide-react";
 
 // Sample testimonial data
 const testimonialData = [
@@ -28,6 +37,87 @@ const testimonialData = [
     image: "/api/placeholder/80/80",
     content:
       "I was hesitant about investing in professional services, but it's been the best decision for my business. Their team was responsive, creative, and truly cared about helping my business grow.",
+    rating: 4,
+  },
+  {
+    id: 4,
+    name: "David Williams",
+    role: "Project Manager, Enterprise Solutions",
+    image: "/api/placeholder/80/80",
+    content:
+      "We've worked with many vendors over the years, but none have provided the level of expertise and dedication that we experienced here. They're now our go-to partner for all our projects.",
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: "Lisa Thompson",
+    role: "Director of Operations, HealthLife",
+    image: "/api/placeholder/80/80",
+    content:
+      "In our industry, compliance and attention to detail are critical. This team not only understood our unique requirements but provided solutions that were both innovative and fully compliant with industry standards.",
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: "Robert Kim",
+    role: "E-commerce Manager",
+    image: "/api/placeholder/80/80",
+    content:
+      "Our online sales have increased by 65% since implementing their recommendations. Their team took the time to understand our products and customers, resulting in a strategy that really worked for us.",
+    rating: 4,
+  },
+  {
+    id: 4,
+    name: "David Williams",
+    role: "Project Manager, Enterprise Solutions",
+    image: "/api/placeholder/80/80",
+    content:
+      "We've worked with many vendors over the years, but none have provided the level of expertise and dedication that we experienced here. They're now our go-to partner for all our projects.",
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: "Lisa Thompson",
+    role: "Director of Operations, HealthLife",
+    image: "/api/placeholder/80/80",
+    content:
+      "In our industry, compliance and attention to detail are critical. This team not only understood our unique requirements but provided solutions that were both innovative and fully compliant with industry standards.",
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: "Robert Kim",
+    role: "E-commerce Manager",
+    image: "/api/placeholder/80/80",
+    content:
+      "Our online sales have increased by 65% since implementing their recommendations. Their team took the time to understand our products and customers, resulting in a strategy that really worked for us.",
+    rating: 4,
+  },
+  {
+    id: 4,
+    name: "David Williams",
+    role: "Project Manager, Enterprise Solutions",
+    image: "/api/placeholder/80/80",
+    content:
+      "We've worked with many vendors over the years, but none have provided the level of expertise and dedication that we experienced here. They're now our go-to partner for all our projects.",
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: "Lisa Thompson",
+    role: "Director of Operations, HealthLife",
+    image: "/api/placeholder/80/80",
+    content:
+      "In our industry, compliance and attention to detail are critical. This team not only understood our unique requirements but provided solutions that were both innovative and fully compliant with industry standards.",
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: "Robert Kim",
+    role: "E-commerce Manager",
+    image: "/api/placeholder/80/80",
+    content:
+      "Our online sales have increased by 65% since implementing their recommendations. Their team took the time to understand our products and customers, resulting in a strategy that really worked for us.",
     rating: 4,
   },
   {
@@ -185,8 +275,9 @@ const TestimonialsPage = () => {
       <header className="relative py-32 overflow-hidden bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800">
         {/* Decorative Elements */}
         <div className="absolute top-0 left-0 w-full h-full opacity-20">
-          <div className="absolute w-96 h-96 rounded-full bg-white/10 -top-20 -left-20 blur-3xl"></div>
-          <div className="absolute w-96 h-96 rounded-full bg-purple-500/10 bottom-0 right-0 blur-3xl"></div>
+          <div className="absolute w-96 h-96 rounded-full bg-white/10 -top-20 -left-20 blur-3xl animate-pulse"></div>
+          <div className="absolute w-96 h-96 rounded-full bg-purple-500/10 bottom-0 right-0 blur-3xl animate-pulse"></div>
+          <div className="absolute w-64 h-64 rounded-full bg-blue-400/10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 blur-2xl animate-pulse"></div>
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
@@ -201,8 +292,9 @@ const TestimonialsPage = () => {
               Trusted by businesses worldwide
             </p>
             <p className="text-lg text-blue-200 max-w-3xl mx-auto">
-              Don't just take our word for it. Hear from the businesses and individuals 
-              who have transformed their success with our innovative solutions and dedicated service.
+              Don't just take our word for it. Hear from the businesses and
+              individuals who have transformed their success with our innovative
+              solutions and dedicated service.
             </p>
           </div>
         </div>
@@ -210,20 +302,112 @@ const TestimonialsPage = () => {
 
       {/* Main Content Container */}
       <div className="container mx-auto px-6 relative">
-        {/* Testimonials Section - Elevated */}
+        {/* Stats Section - First, Enhanced with Animation */}
         <div className="bg-white rounded-2xl shadow-xl p-10 mb-24 transform -mt-24 relative z-20 border border-gray-100">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center mb-8">
+              <div className="mr-4">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center shadow-lg">
+                  <TrendingUp className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h2 className="text-5xl font-bold text-gray-800">
+                Our Impact in Numbers
+              </h2>
+            </div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Real results that speak louder than words. Here's the measurable
+              impact we've delivered for our clients across different industries
+              and project scales.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-blue-100">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Award className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-4">
+                98%
+              </div>
+              <div className="text-gray-700 text-xl font-semibold mb-2">
+                Client Satisfaction Rate
+              </div>
+              <p className="text-gray-500 text-sm">
+                Based on post-project surveys and feedback
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-lg p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-indigo-100">
+              <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-4">
+                250+
+              </div>
+              <div className="text-gray-700 text-xl font-semibold mb-2">
+                Projects Completed
+              </div>
+              <p className="text-gray-500 text-sm">
+                Across various industries and scales
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl shadow-lg p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-purple-100">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <TrendingUp className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 mb-4">
+                45%
+              </div>
+              <div className="text-gray-700 text-xl font-semibold mb-2">
+                Average Growth for Clients
+              </div>
+              <p className="text-gray-500 text-sm">
+                Measured within 6 months of project completion
+              </p>
+            </div>
+          </div>
+
+          {/* Additional Stats Row */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pt-8 border-t border-gray-200">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-600 mb-2">5+</div>
+              <div className="text-gray-600 text-sm">Years Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-indigo-600 mb-2">
+                24/7
+              </div>
+              <div className="text-gray-600 text-sm">Support Available</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-purple-600 mb-2">15+</div>
+              <div className="text-gray-600 text-sm">Industries Served</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-600 mb-2">100%</div>
+              <div className="text-gray-600 text-sm">Project Completion</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonials Section - Second */}
+        <div className="bg-white rounded-2xl shadow-xl p-10 mb-24 border border-gray-100">
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-8">
               <div className="mr-4">
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                  <Quote className="w-6 h-6 text-white" />
+                <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                  <Quote className="w-8 h-8 text-white" />
                 </div>
               </div>
-              <h2 className="text-4xl font-bold text-gray-800">Client Success Stories</h2>
+              <h2 className="text-5xl font-bold text-gray-800">
+                Client Success Stories
+              </h2>
             </div>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Our clients' success is our success. Here's what they have to say about working with 
-              Tesod Technology and the results we've achieved together.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Our clients' success is our success. Here's what they have to say
+              about working with us and the results we've achieved together.
             </p>
           </div>
 
@@ -256,7 +440,7 @@ const TestimonialsPage = () => {
                     width: `${(100 / testimonialData.length) * itemsToShow}%`,
                   }}
                 >
-                  <div className="h-full bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg p-8 flex flex-col relative overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                  <div className="h-full bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg p-8 flex flex-col relative overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     {/* Quote icon */}
                     <div className="absolute -top-2 -right-2 opacity-10">
                       <Quote className="w-16 h-16 text-indigo-600" />
@@ -322,7 +506,7 @@ const TestimonialsPage = () => {
                   onClick={() => goToSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     activeIndex === index
-                      ? "bg-indigo-600 w-6"
+                      ? "bg-indigo-600 w-8"
                       : "bg-gray-300 hover:bg-gray-400"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
@@ -332,56 +516,29 @@ const TestimonialsPage = () => {
           </div>
         </div>
 
-        {/* Stats Section - Enhanced */}
-        <div className="mb-24">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 inline-block relative">
-              Our Impact in Numbers
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-4">98%</div>
-              <div className="text-gray-700 text-lg font-medium">Client Satisfaction Rate</div>
-              <p className="text-gray-500 text-sm mt-2">Based on post-project surveys</p>
-            </div>
-            <div className="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-4">250+</div>
-              <div className="text-gray-700 text-lg font-medium">Projects Completed</div>
-              <p className="text-gray-500 text-sm mt-2">Across various industries</p>
-            </div>
-            <div className="bg-white rounded-2xl shadow-lg p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 mb-4">45%</div>
-              <div className="text-gray-700 text-lg font-medium">Average Growth for Clients</div>
-              <p className="text-gray-500 text-sm mt-2">Measured within 6 months</p>
-            </div>
-          </div>
-        </div>
-
         {/* Call to Action Section */}
         <div className="mb-24">
           <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 rounded-2xl p-12 text-center relative overflow-hidden">
             {/* Decorative Elements */}
             <div className="absolute top-0 left-0 w-full h-full opacity-20">
-              <div className="absolute w-96 h-96 rounded-full bg-white/10 -top-20 -left-20 blur-3xl"></div>
-              <div className="absolute w-96 h-96 rounded-full bg-purple-500/10 bottom-0 right-0 blur-3xl"></div>
+              <div className="absolute w-96 h-96 rounded-full bg-white/10 -top-20 -left-20 blur-3xl animate-pulse"></div>
+              <div className="absolute w-96 h-96 rounded-full bg-purple-500/10 bottom-0 right-0 blur-3xl animate-pulse"></div>
             </div>
 
             <div className="relative z-10 max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Ready to Join Our Success Stories?
               </h2>
-              <p className="text-blue-100 text-xl mb-8">
-                Let's work together to create your own success story. Get in touch with our team 
-                to discuss how we can help transform your business.
+              <p className="text-blue-100 text-xl mb-8 leading-relaxed">
+                Let's work together to create your own success story. Get in
+                touch with our team to discuss how we can help transform your
+                business and achieve measurable results.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <button className="px-8 py-3 bg-white text-blue-700 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-lg">
+                <button className="px-8 py-4 bg-white text-blue-700 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-lg hover:scale-105">
                   Start Your Project
                 </button>
-                <button className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300 text-lg">
+                <button className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300 text-lg hover:scale-105">
                   Schedule Consultation
                 </button>
               </div>

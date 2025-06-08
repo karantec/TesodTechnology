@@ -17,12 +17,14 @@ const MainPage = () => {
       <Carousel />
       <WhyChooseTesod />
       <Serve />
+
       <Works />
-      <TesodCallbackForm />
       <OurWorkVideo />
+
+      <TesodCallbackForm />
       <TestimonialsPage />
       <Blogtwo />
-      <Gallerytwo />
+      {/* <Gallerytwo /> */}
       {/* Uncomment the following line to include DescriptiveCards component */}
       {/* <DescriptiveCards/> */}
     </div>

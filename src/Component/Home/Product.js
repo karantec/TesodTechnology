@@ -6,14 +6,14 @@ const ProductCard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [itemsPerPage] = useState(6);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     // Fetching the product data from the API
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        // In a real implementation, you might want to pass page and limit parameters
-        // Example: fetch(`https://tesodtechnologyfinal.onrender.com?page=${currentPage}&limit=${itemsPerPage}`)
         const response = await fetch(
           "https://tesodtechnologyfinal.onrender.com/product"
         );
@@ -52,6 +52,33 @@ const ProductCard = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
     }
+  };
+
+  // Open modal with product details
+  const openModal = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+  };
+
+  // Handle image error - fallback to placeholder
+  const handleImageError = (e) => {
+    e.target.src =
+      "https://via.placeholder.com/400x320/6366f1/ffffff?text=Product+Image";
+  };
+
+  // WhatsApp enquiry function
+  const handleWhatsAppEnquiry = (productName) => {
+    const phoneNumber = "919876543210"; // Replace with your actual WhatsApp number
+    const message = `Hi! I'm interested in your product "${productName}". Could you please provide more details and pricing information?`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, "_blank");
   };
 
   return (
@@ -96,7 +123,9 @@ const ProductCard = () => {
                 </svg>
               </div>
             </div>
-            <h2 className="text-3xl font-bold text-gray-800">Featured Products</h2>
+            <h2 className="text-3xl font-bold text-gray-800">
+              Featured Products
+            </h2>
           </div>
 
           {loading ? (
@@ -109,38 +138,60 @@ const ProductCard = () => {
                 {currentProducts.length > 0 ? (
                   currentProducts.map((product) => (
                     <div
-                      key={product.id || Math.random()}
+                      key={product._id || product.id || Math.random()}
                       className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:scale-105 border border-gray-100"
                     >
-                      {product.image && (
-                        <div className="h-48 w-full bg-gray-200 overflow-hidden">
-                          <img
-                            src={product.image || "/api/placeholder/400/320"}
-                            alt={product.name}
-                            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                          />
-                        </div>
-                      )}
+                      <div className="h-48 w-full bg-gray-200 overflow-hidden">
+                        <img
+                          src={
+                            product.image ||
+                            "https://via.placeholder.com/400x320/6366f1/ffffff?text=Product+Image"
+                          }
+                          alt={product.name || product.title || "Product"}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                          onError={handleImageError}
+                        />
+                      </div>
                       <div className="p-5">
                         <h3 className="text-xl font-bold text-gray-800 mb-2 truncate">
-                          {product.name}
+                          {product.name || product.title || "Product Name"}
                         </h3>
                         <p className="text-gray-600 mb-4 line-clamp-3">
-                          {product.description}
+                          {product.description || "No description available"}
                         </p>
                         <div className="flex flex-wrap gap-2 mb-4">
                           <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">
-                            {product.category}
+                            {product.category || "General"}
                           </span>
                           {product.price && (
                             <span className="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
-                              ${product.price}
+                              ₹{product.price}
                             </span>
                           )}
                         </div>
-                        <div className="flex justify-between items-center">
-                          <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-300 text-sm font-medium">
+                        <div className="flex justify-between items-center gap-2">
+                          <button
+                            onClick={() => openModal(product)}
+                            className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-300 text-sm font-medium"
+                          >
                             View Details
+                          </button>
+                          <button
+                            onClick={() =>
+                              handleWhatsAppEnquiry(
+                                product.name || product.title
+                              )
+                            }
+                            className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-300 text-sm font-medium flex items-center justify-center gap-1"
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.516" />
+                            </svg>
+                            Enquiry
                           </button>
                         </div>
                       </div>
@@ -157,7 +208,9 @@ const ProductCard = () => {
                       >
                         <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v12z"></path>
                       </svg>
-                      <p className="text-gray-500 text-lg">No products available.</p>
+                      <p className="text-gray-500 text-lg">
+                        No products available.
+                      </p>
                     </div>
                   </div>
                 )}
@@ -213,6 +266,156 @@ const ProductCard = () => {
           )}
         </div>
       </div>
+
+      {/* Product Details Modal */}
+      {isModalOpen && selectedProduct && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="flex justify-between items-center p-6 border-b border-gray-200">
+              <h2 className="text-2xl font-bold text-gray-800">
+                {selectedProduct.name ||
+                  selectedProduct.title ||
+                  "Product Details"}
+              </h2>
+              <button
+                onClick={closeModal}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
+              >
+                <svg
+                  className="w-6 h-6 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Product Image */}
+                <div className="space-y-4">
+                  <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
+                    <img
+                      src={
+                        selectedProduct.image ||
+                        "https://via.placeholder.com/500x500/6366f1/ffffff?text=Product+Image"
+                      }
+                      alt={
+                        selectedProduct.name ||
+                        selectedProduct.title ||
+                        "Product"
+                      }
+                      className="w-full h-full object-cover"
+                      onError={handleImageError}
+                    />
+                  </div>
+                </div>
+
+                {/* Product Information */}
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                      Description
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {selectedProduct.description ||
+                        "No detailed description available for this product."}
+                    </p>
+                  </div>
+
+                  {/* Product Details */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="px-4 py-2 bg-purple-100 text-purple-800 font-medium rounded-full">
+                        Category: {selectedProduct.category || "General"}
+                      </span>
+                      {selectedProduct.price && (
+                        <span className="px-4 py-2 bg-green-100 text-green-800 font-bold rounded-full text-lg">
+                          ₹{selectedProduct.price}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Additional product details if available */}
+                    {selectedProduct.features && (
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">
+                          Features:
+                        </h4>
+                        <ul className="list-disc list-inside text-gray-600 space-y-1">
+                          {selectedProduct.features.map((feature, index) => (
+                            <li key={index}>{feature}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {selectedProduct.specifications && (
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">
+                          Specifications:
+                        </h4>
+                        <div className="text-gray-600">
+                          {Object.entries(selectedProduct.specifications).map(
+                            ([key, value]) => (
+                              <div
+                                key={key}
+                                className="flex justify-between py-1 border-b border-gray-100 last:border-b-0"
+                              >
+                                <span className="font-medium capitalize">
+                                  {key}:
+                                </span>
+                                <span>{value}</span>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex gap-4 pt-4">
+                    <button
+                      onClick={() => {
+                        handleWhatsAppEnquiry(
+                          selectedProduct.name || selectedProduct.title
+                        );
+                        closeModal();
+                      }}
+                      className="flex-1 px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors duration-300 font-semibold flex items-center justify-center gap-2"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.516" />
+                      </svg>
+                      WhatsApp Enquiry
+                    </button>
+                    <button
+                      onClick={closeModal}
+                      className="px-6 py-3 bg-gray-200 text-gray-800 rounded-xl hover:bg-gray-300 transition-colors duration-300 font-semibold"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
