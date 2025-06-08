@@ -105,7 +105,7 @@ const Footer = () => {
                   href="mailto:info@tesodtechnology.com"
                   className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
-                  info@tesodtechnology.com
+                  support@tesodtechnology.com, tesodtechnology@gmail.com
                 </a>
               </div>
             </div>
