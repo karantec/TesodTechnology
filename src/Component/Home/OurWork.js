@@ -38,7 +38,7 @@ const Works = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://tesodtechnologyfinal.onrender.com/works"
+          "https://backend.tesodtechnology.com/works"
         );
 
         if (!response.ok) {

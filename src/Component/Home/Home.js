@@ -29,7 +29,7 @@ export default function EnhancedPremiumCarousel() {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://tesodtechnologyfinal.onrender.com/crousel"
+          "https://backend.tesodtechnology.com/crousel"
         );
         const data = await response.json();
         setSlides(data);

@@ -15,7 +15,7 @@ const ProductCard = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://tesodtechnologyfinal.onrender.com/product"
+          "https://backend.tesodtechnology.com/product"
         );
         const data = await response.json();
 

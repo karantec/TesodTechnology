@@ -13,7 +13,9 @@ const Gallerytwo = () => {
   useEffect(() => {
     const fetchGalleryData = async () => {
       try {
-        const response = await axios.get("https://tesodtechnologyfinal.onrender.com/gallery/Gallery");
+        const response = await axios.get(
+          "https://backend.tesodtechnology.com/gallery/Gallery"
+        );
         setGalleryItems(response.data);
       } catch (error) {
         console.error("Error fetching gallery data:", error);
@@ -53,14 +55,16 @@ const Gallerytwo = () => {
           {displayedItems.map((item, index) => (
             <div
               key={index}
-              className={`${getCardSizeClass(index)} group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl`}
+              className={`${getCardSizeClass(
+                index
+              )} group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl`}
             >
               <img
                 src={item.image}
                 alt={item.title}
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              
+
               {/* Overlay with title on hover */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                 <h3 className="text-xl md:text-2xl font-semibold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -68,10 +72,10 @@ const Gallerytwo = () => {
                 </h3>
                 <div className="h-0.5 w-0 bg-white group-hover:w-16 transition-all duration-500"></div>
               </div>
-              
+
               {/* Click overlay for the entire card */}
-              <div 
-                onClick={() => navigate(`/gallery/${item.id || index}`)} 
+              <div
+                onClick={() => navigate(`/gallery/${item.id || index}`)}
                 className="absolute inset-0 cursor-pointer"
                 aria-label={`View ${item.title} details`}
               />
@@ -110,7 +114,7 @@ const Gallerytwo = () => {
         >
           {galleryItems.map((item, index) => (
             <SwiperSlide key={index}>
-              <div 
+              <div
                 className="relative group overflow-hidden rounded-xl shadow-lg aspect-[4/5]"
                 onClick={() => navigate(`/gallery/${item.id || index}`)}
               >
@@ -130,7 +134,7 @@ const Gallerytwo = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        
+
         {/* Mobile View More Button */}
         {galleryItems.length > 4 && (
           <div className="flex justify-center mt-4">

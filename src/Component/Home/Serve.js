@@ -22,7 +22,7 @@ const Serve = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://tesodtechnologyfinal.onrender.com/services/"
+          "https://backend.tesodtechnology.com/services/"
         );
 
         if (!response.ok) {

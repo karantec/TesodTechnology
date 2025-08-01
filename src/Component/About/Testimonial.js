@@ -82,7 +82,7 @@ const TestimonialsPage = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://tesodtechnologyfinal.onrender.com/testimonial/Testimonial"
+          "https://backend.tesodtechnology.com/testimonial/Testimonial"
         );
 
         if (!response.ok) {

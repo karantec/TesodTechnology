@@ -22,7 +22,7 @@ const PremiumGallery = () => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          "https://tesodtechnologyfinal.onrender.com/gallery"
+          "https://backend.tesodtechnology.com/gallery"
         );
         const data = await response.json();
 

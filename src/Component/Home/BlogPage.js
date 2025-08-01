@@ -10,7 +10,7 @@ const BlogPage = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          "https://tesodtechnologyfinal.onrender.com/blog/get"
+          "https://backend.tesodtechnology.com/blog/get"
         );
         const apiPosts = response.data.map((post, index) => ({
           id: post._id || index,

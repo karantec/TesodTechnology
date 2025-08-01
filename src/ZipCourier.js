@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const ProductCards = () => {
   const [products, setProducts] = useState([]);
@@ -12,7 +12,9 @@ const ProductCards = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch('https://tesodtechnologyfinal.onrender.com/product');
+        const response = await fetch(
+          "https://backend.tesodtechnology.com/product"
+        );
         const data = await response.json();
 
         // Extract products array safely
@@ -20,7 +22,7 @@ const ProductCards = () => {
         setProducts(productList);
         setTotalPages(Math.ceil(productList.length / itemsPerPage));
       } catch (error) {
-        console.error('Error fetching product data:', error);
+        console.error("Error fetching product data:", error);
       } finally {
         setLoading(false);
       }
@@ -50,29 +52,32 @@ const ProductCards = () => {
 
     try {
       // Trigger the download from the backend API
-      const response = await fetch('https://tesodtechnologyfinal.onrender.com/products/download-zip', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        "https://backend.tesodtechnology.com/products/download-zip",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       // Check if the response is successful
       if (response.ok) {
         const blob = await response.blob(); // Get the ZIP file as a Blob
         const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
-        a.download = 'products.zip'; // Set the name of the downloaded file
+        a.download = "products.zip"; // Set the name of the downloaded file
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
       } else {
-        throw new Error('Failed to download ZIP file');
+        throw new Error("Failed to download ZIP file");
       }
     } catch (error) {
-      console.error('Error downloading file:', error);
+      console.error("Error downloading file:", error);
     } finally {
       setDownloadLoading(false);
     }
@@ -91,7 +96,10 @@ const ProductCards = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
         {currentProducts.length > 0 ? (
           currentProducts.map((product) => (
-            <div key={product.id || Math.random()} className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:scale-105">
+            <div
+              key={product.id || Math.random()}
+              className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:scale-105"
+            >
               {product.image && (
                 <div className="h-48 w-full bg-gray-200 overflow-hidden">
                   <img
@@ -102,8 +110,12 @@ const ProductCards = () => {
                 </div>
               )}
               <div className="p-5">
-                <h3 className="text-xl font-bold text-gray-800 mb-2 truncate">{product.name}</h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">{product.description}</p>
+                <h3 className="text-xl font-bold text-gray-800 mb-2 truncate">
+                  {product.name}
+                </h3>
+                <p className="text-gray-600 mb-4 line-clamp-3">
+                  {product.description}
+                </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
                     {product.category}
@@ -118,7 +130,9 @@ const ProductCards = () => {
                 <div className="mt-4 mb-4 bg-gray-50 border border-gray-200 rounded-lg p-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-green-600 font-medium">Free Download</p>
+                      <p className="text-green-600 font-medium">
+                        Free Download
+                      </p>
                       <p className="text-gray-500 text-sm">ZIP Archive</p>
                     </div>
                     <button
@@ -126,8 +140,8 @@ const ProductCards = () => {
                       disabled={downloadLoading}
                       className={`px-4 py-2 rounded-md flex items-center space-x-2 ${
                         downloadLoading
-                          ? 'bg-gray-300 cursor-not-allowed'
-                          : 'bg-green-600 hover:bg-green-700 text-white'
+                          ? "bg-gray-300 cursor-not-allowed"
+                          : "bg-green-600 hover:bg-green-700 text-white"
                       }`}
                     >
                       {downloadLoading ? (
@@ -169,7 +183,11 @@ const ProductCards = () => {
             <button
               onClick={goToPreviousPage}
               disabled={currentPage === 1}
-              className={`p-2 rounded-md ${currentPage === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-blue-600 hover:bg-blue-100'}`}
+              className={`p-2 rounded-md ${
+                currentPage === 1
+                  ? "text-gray-400 cursor-not-allowed"
+                  : "text-blue-600 hover:bg-blue-100"
+              }`}
             >
               Previous
             </button>
@@ -181,8 +199,8 @@ const ProductCards = () => {
                   onClick={() => paginate(number + 1)}
                   className={`px-3 py-1 rounded-md ${
                     currentPage === number + 1
-                      ? 'bg-blue-600 text-white'
-                      : 'text-blue-600 hover:bg-blue-100'
+                      ? "bg-blue-600 text-white"
+                      : "text-blue-600 hover:bg-blue-100"
                   }`}
                 >
                   {number + 1}
@@ -193,7 +211,11 @@ const ProductCards = () => {
             <button
               onClick={goToNextPage}
               disabled={currentPage === totalPages}
-              className={`p-2 rounded-md ${currentPage === totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-blue-600 hover:bg-blue-100'}`}
+              className={`p-2 rounded-md ${
+                currentPage === totalPages
+                  ? "text-gray-400 cursor-not-allowed"
+                  : "text-blue-600 hover:bg-blue-100"
+              }`}
             >
               Next
             </button>

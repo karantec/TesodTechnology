@@ -6,7 +6,7 @@ const Services = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://tesodtechnologyfinal.onrender.com/services/")
+    fetch("https://backend.tesodtechnology.com/services/")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch services");
